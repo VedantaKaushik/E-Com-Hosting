@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9593c139.css",
+    "main.js": "/static/js/main.e99f8f3e.js",
+    "static/media/headphones.png": "/static/media/headphones.9137294904c21dab49cf.png",
+    "static/media/404.jpg": "/static/media/404.ce293654fc5b055593cf.jpg",
+    "static/media/earbuds.jpg": "/static/media/earbuds.8e35328b467c3fd6987d.jpg",
+    "static/media/Charger.png": "/static/media/Charger.ae2aa20d7288c98f8c16.png",
+    "static/media/Mastercard.svg": "/static/media/Mastercard.3b5f2265558930c12a94e4e9b322792f.svg",
+    "static/media/Paypal.svg": "/static/media/Paypal.303eaaca96460670cfe88d28632c1577.svg",
+    "static/media/Discover.svg": "/static/media/Discover.bf4e186c3cdbadc088eee117de25270c.svg",
+    "static/media/ApplePay.svg": "/static/media/ApplePay.19afabf8582c8d042ee424721641d785.svg",
+    "static/media/Visa.svg": "/static/media/Visa.56686d6ccac2c71b19593769e4c141ee.svg",
+    "index.html": "/index.html",
+    "static/media/Amex.svg": "/static/media/Amex.1e6b37aaa809ef1318114ead15ad0222.svg",
+    "static/media/Diners Club.svg": "/static/media/Diners Club.f934b564e3cfb5d400404923ab91a8e9.svg",
+    "main.9593c139.css.map": "/static/css/main.9593c139.css.map",
+    "main.e99f8f3e.js.map": "/static/js/main.e99f8f3e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9593c139.css",
+    "static/js/main.e99f8f3e.js"
+  ]
+}
