@@ -16,7 +16,7 @@ export const searchApi = createAsyncThunk(
   async ({ q, limit, page }, thunkAPI) => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/search?q=${q}&limit=${limit}&page=${page}`
+        `https://voltssr.onrender.com/api/search?q=${q}&limit=${limit}&page=${page}`
       );
       return res.data;
     } catch (error) {

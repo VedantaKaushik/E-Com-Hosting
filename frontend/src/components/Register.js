@@ -88,7 +88,7 @@ const Register = () => {
     reState();
 
     const res = await axios.post(
-      "http://localhost:5000/api/user/create",
+      "https://voltssr.onrender.com/api/user/create",
       data,
       {
         "Content-Type": "application/json",

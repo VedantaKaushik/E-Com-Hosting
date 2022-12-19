@@ -53,7 +53,7 @@ const AllProducts = () => {
           <PreNav />
           <Header />
           <FilterDiv>
-            <Sort>
+            <Sort style={{ display: "none" }}>
               <SortIcon />
               <span>Sort</span>
               <select>

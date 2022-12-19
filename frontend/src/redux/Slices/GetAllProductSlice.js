@@ -14,7 +14,7 @@ export const GetAllProducts = createAsyncThunk(
   async ({ page, limit }, thunkApi) => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/products?limit=${limit}&page=${page}`
+        `https://voltssr.onrender.com/api/products?limit=${limit}&page=${page}`
       );
 
       return res.data;

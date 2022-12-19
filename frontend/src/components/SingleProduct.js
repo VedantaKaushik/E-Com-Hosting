@@ -40,7 +40,9 @@ const SingleProduct = () => {
 
   // Getting The Product
   const getProduct = async () => {
-    const res = await axios.get(`http://localhost:5000/api/product?id=${id}`);
+    const res = await axios.get(
+      `https://voltssr.onrender.com/api/product?id=${id}`
+    );
     setProduct(res.data);
     setReview(res.data.review);
     setSideImage(res.data.images);

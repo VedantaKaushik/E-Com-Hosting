@@ -60,7 +60,7 @@ const ProCatagory = () => {
         ) : (
           <>
             <FilterDiv>
-              <Sort>
+              <Sort style={{ display: "none" }}>
                 <SortIcon />
                 <span>Sort</span>
                 <select>

@@ -74,7 +74,7 @@ const SearchedProduct = () => {
         ) : (
           <>
             <FilterDiv>
-              <Sort>
+              <Sort style={{ display: "none" }}>
                 <SortIcon />
                 <span>Sort</span>
                 <select>

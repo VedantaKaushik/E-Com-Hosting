@@ -186,9 +186,12 @@ const CheckoutPage = () => {
 
     const data = { userInfo, Product, priceTotal };
 
-    const res = await axios.post("http://localhost:5000/api/order/create", {
-      data,
-    });
+    const res = await axios.post(
+      "/https://voltssr.onrender.com/api/order/create",
+      {
+        data,
+      }
+    );
 
     // reseting the state
     setName("");

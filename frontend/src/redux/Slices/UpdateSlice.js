@@ -24,7 +24,7 @@ export const UpdateAddress = createAsyncThunk(
       const data = { AdressLine, city, state, zipCode, phone, country, id };
 
       const res = await axios.post(
-        "http://localhost:5000/api/user/update",
+        "https://voltssr.onrender.com/api/user/update",
         data,
         {
           "Content-Type": "application/json",
@@ -33,7 +33,7 @@ export const UpdateAddress = createAsyncThunk(
 
       const UpdateDetail = async () => {
         const Detail = await axios.get(
-          "http://localhost:5000/api/user/getinfo",
+          "https://voltssr.onrender.com/api/user/getinfo",
           {
             withCredentials: true,
           }
