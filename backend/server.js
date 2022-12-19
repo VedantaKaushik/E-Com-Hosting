@@ -15,6 +15,7 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: "https://voltsfr.onrender.com",
+    credentials: true,
   })
 );
 app.use(fileupload());
