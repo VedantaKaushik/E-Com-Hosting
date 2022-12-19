@@ -12,6 +12,8 @@ import { SearchCatagory } from "../redux/Slices/CatagorySlice";
 const Header = () => {
   const { product, sq, error } = useSelector((state) => state.features);
 
+  const path = window.location.pathname;
+
   const dispatch = useDispatch();
   const [search, setSearch] = useState(sq);
   const { totalQuantity } = useSelector((state) => state.cart);
@@ -61,18 +63,35 @@ const Header = () => {
   }, [error, product]);
 
   useEffect(() => {
-    const t = document.querySelector("title");
     // Home
-    if (t.textContent === "Volts | Home") {
+    if (path === "/") {
       document.querySelector("#home").classList.add("active");
     } else {
       document.querySelector("#home").classList.remove("active");
     }
     // Products
-    if (t.textContent === "Volts | Products") {
+    if (path === "/products") {
       document.querySelector("#products").classList.add("active");
     } else {
       document.querySelector("#products").classList.remove("active");
+    }
+    // earbuds
+    if (path === "/products/category/WirelessEarbuds") {
+      document.querySelector("#earbuds").classList.add("active");
+    } else {
+      document.querySelector("#earbuds").classList.remove("active");
+    }
+    // charger
+    if (path === "/products/category/Chargers") {
+      document.querySelector("#charger").classList.add("active");
+    } else {
+      document.querySelector("#charger").classList.remove("active");
+    }
+    // Headphone
+    if (path === "/products/category/Headphones") {
+      document.querySelector("#headphone").classList.add("active");
+    } else {
+      document.querySelector("#headphone").classList.remove("active");
     }
   });
 
@@ -215,6 +234,7 @@ const Header = () => {
             </Link>
 
             <Link
+              id="headphone"
               to={`/products/category/${"Headphones"}`}
               onClick={() => {
                 dispatch(
@@ -246,7 +266,7 @@ const Header = () => {
                 dispatch(resetState());
               }}
             >
-              Home
+              <span id="home">Home</span>
             </Link>
 
             <Link
@@ -293,6 +313,7 @@ const Header = () => {
             </Link>
 
             <Link
+              id="headphone"
               to={`/products/category/${"Headphones"}`}
               onClick={() => {
                 dispatch(
