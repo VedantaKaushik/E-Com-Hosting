@@ -51,7 +51,7 @@ const SingleProduct = () => {
 
   useEffect(() => {
     getProduct();
-  }, []);
+  }, [product]);
 
   // Soping The desc and Review
   useEffect(() => {
