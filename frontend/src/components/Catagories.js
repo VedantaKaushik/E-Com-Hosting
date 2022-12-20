@@ -21,7 +21,9 @@ const Catagories = () => {
               <p>
                 Earbud
                 <br /> Collection <br />
-                <Link to={`/products/catagorie`}>Shop Now</Link>
+                <Link to={`/products/category/${"WirelessEarbuds"}`}>
+                  Shop Now
+                </Link>
               </p>
             </Heading>
             <img src={Earbuds} alt="." />
@@ -32,7 +34,7 @@ const Catagories = () => {
               <p>
                 Charger
                 <br /> Collection <br />
-                <Link to="#">Shop Now</Link>
+                <Link to={`/products/category/${"Chargers"}`}>Shop Now</Link>
               </p>
             </Heading>
             <img src={Charger} alt="." />
@@ -43,7 +45,7 @@ const Catagories = () => {
               <p>
                 Headphone
                 <br /> Collection <br />
-                <Link to="#">Shop Now</Link>
+                <Link to={`/products/category/${"Headphones"}`}>Shop Now</Link>
               </p>
             </Heading>
             <img src={HeadPhone} alt="." />
