@@ -16,9 +16,11 @@ const PreFooter = () => {
           <Info>
             <p className="Heading">About Us</p>
             <p className="desc">
-              Europe's fastest growing audio & electronic brand. The most
-              incredible range of wireless earphones, earbuds, chargers and a
-              lot more. Charge With Volts!
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi
+              mollitia excepturi optio nemo doloribus, similique in, ullam
+              perspiciatis qui expedita culpa voluptate placeat, sint
+              repudiandae officiis animi sit velit id?Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Quam, neque!
             </p>
           </Info>
 
