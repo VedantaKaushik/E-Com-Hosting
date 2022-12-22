@@ -28,7 +28,6 @@ export const userLogin = createAsyncThunk(
       );
 
       // Saving Data In Sesion Storage
-      sessionStorage.setItem("token", res.data.token);
       sessionStorage.setItem("user", JSON.stringify(res.data.user));
       sessionStorage.setItem("isAdmin", res.data.isAdmin);
       sessionStorage.setItem("userId", res.data._id);
