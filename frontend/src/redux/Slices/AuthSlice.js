@@ -24,7 +24,6 @@ export const userLogin = createAsyncThunk(
             "Content-Type": "application/json",
           },
           withCredentials: true,
-          credentials: "include",
         }
       );
 
