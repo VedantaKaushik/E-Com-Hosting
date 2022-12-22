@@ -57,7 +57,7 @@ export const LoginAUser = async (req, res) => {
         httpOnly: true,
         maxAge: 86400000,
       })
-      .json({ sucess: true, user, _id, isAdmin });
+      .json({ sucess: true, user, _id, isAdmin, token });
   } catch (error) {
     res.status(500);
     console.log(error);
