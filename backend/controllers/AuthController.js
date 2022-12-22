@@ -56,6 +56,8 @@ export const LoginAUser = async (req, res) => {
       .cookie("token", token, {
         maxAge: 86400000,
         SameSite: "None",
+        sameSite: "none",
+        secure: true,
       })
       .json({ sucess: true, user, _id, isAdmin, token });
   } catch (error) {
