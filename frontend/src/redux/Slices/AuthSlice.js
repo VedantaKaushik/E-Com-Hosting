@@ -20,9 +20,7 @@ export const userLogin = createAsyncThunk(
         "https://voltssr.onrender.com/api/user/login",
         data,
         {
-          headers: {
-            "Content-Type": "application/json",
-          },
+          "Content-Type": "application/json",
           withCredentials: true,
         }
       );
