@@ -14,7 +14,7 @@ app.use(express.urlencoded({ limit: "100mb", extended: true }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://voltsfr.onrender.com",
+    origin: ["https://voltsfr.onrender.com", "https://voltsadmin.onrender.com"],
     credentials: true,
   })
 );
