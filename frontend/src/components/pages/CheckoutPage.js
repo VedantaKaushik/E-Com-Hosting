@@ -187,7 +187,7 @@ const CheckoutPage = () => {
     const data = { userInfo, Product, priceTotal };
 
     const res = await axios.post(
-      "/https://voltssr.onrender.com/api/order/create",
+      "https://voltssr.onrender.com/api/order/create",
       {
         data,
       }
