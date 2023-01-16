@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { resetState } from "../redux/Slices/FeatureSlice";
 
 const PreFooter = () => {
-  const id = sessionStorage.getItem("userId");
+  const { user_id } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   return (
@@ -67,7 +67,7 @@ const PreFooter = () => {
             <p className="Heading">Services</p>
 
             <Link
-              to={`/account/${id}`}
+              to={`/account/${user_id}`}
               className="links"
               onClick={() => {
                 dispatch(resetState());
