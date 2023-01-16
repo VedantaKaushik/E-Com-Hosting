@@ -89,7 +89,7 @@ const Login = () => {
               color: "#15161d",
             }}
           >
-            Volts.
+            E-Com
           </p>
         </Link>
         <Container>
