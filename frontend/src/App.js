@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 // Components Imports
 import Home from "./Home";
@@ -15,25 +15,33 @@ import ProCatagory from "./components/ProCatagory";
 import CheckoutPage from "./components/pages/CheckoutPage";
 import TrackOrder from "./components/pages/TrackOrder";
 import NotFound from "./components/NotFound";
+import PrivateRoutes from "./components/PrivateRoutes";
 
 const App = () => {
+  const User = sessionStorage.getItem("user");
+
   return (
-    <Router>
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/login" element={<Login />} />
-        <Route exact path="/register" element={<Register />} />
-        <Route exact path="/account/:id" element={<Account />} />
-        <Route exact path="/cart" element={<Cart />} />
-        <Route exact path="/products" element={<AllProducts />} />
-        <Route exact path="/products/:id" element={<SearchedProduct />} />
-        <Route exact path="/products/category/:id" element={<ProCatagory />} />
-        <Route exact path="/product/:id" element={<SingleProduct />} />
-        <Route exact path="/checkout" element={<CheckoutPage />} />
-        <Route exact path="/order/track" element={<TrackOrder />} />
-        <Route exact path="/*" element={<NotFound />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route
+        path="/account/:id"
+        element={
+          <PrivateRoutes user={User}>
+            <Account />
+          </PrivateRoutes>
+        }
+      />
+      <Route path="/cart" element={<Cart />} />
+      <Route path="/products" element={<AllProducts />} />
+      <Route path="/products/:id" element={<SearchedProduct />} />
+      <Route path="/products/category/:id" element={<ProCatagory />} />
+      <Route path="/product/:id" element={<SingleProduct />} />
+      <Route path="/checkout" element={<CheckoutPage />} />
+      <Route path="/order/track" element={<TrackOrder />} />
+      <Route path="/*" element={<NotFound />} />
+    </Routes>
   );
 };
 
