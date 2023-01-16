@@ -1,11 +1,12 @@
 import React from "react";
-import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
+import Account from "../components/Account";
 
 const PrivateRoutes = ({ user, childern }) => {
   const location = useLocation();
 
   return user !== null ? (
-    <Outlet />
+    <Account />
   ) : (
     <Navigate to="/login" state={{ from: location }} replace />
   );
