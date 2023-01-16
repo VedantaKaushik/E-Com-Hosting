@@ -1,4 +1,4 @@
--> This is a next gen advance MERN E-commerce Project build using the MERN Stack and Redux Toolkit. 
+-> This is a next gen advance MERN E-commerce Project build using the MERN Stack and Redux Toolkit.
 
 Features Include :-
 
@@ -7,6 +7,6 @@ Features Include :-
 [3] Account Opening for Customers
 [4] Review System for individual product
 [5] Searching for a product
-[6] Pagination and Sorting Product
+[6] Pagination
 
-And Much more.. 
+And Much more..
