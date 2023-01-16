@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.0b8b7729.css",
-    "main.js": "/static/js/main.b2d8c515.js",
+    "main.js": "/static/js/main.f222e753.js",
     "static/media/headphones.png": "/static/media/headphones.9137294904c21dab49cf.png",
     "static/media/404.jpg": "/static/media/404.ce293654fc5b055593cf.jpg",
     "static/media/earbuds.jpg": "/static/media/earbuds.8e35328b467c3fd6987d.jpg",
@@ -15,10 +15,10 @@
     "static/media/Diners Club.svg": "/static/media/Diners Club.f934b564e3cfb5d400404923ab91a8e9.svg",
     "index.html": "/index.html",
     "main.0b8b7729.css.map": "/static/css/main.0b8b7729.css.map",
-    "main.b2d8c515.js.map": "/static/js/main.b2d8c515.js.map"
+    "main.f222e753.js.map": "/static/js/main.f222e753.js.map"
   },
   "entrypoints": [
     "static/css/main.0b8b7729.css",
-    "static/js/main.b2d8c515.js"
+    "static/js/main.f222e753.js"
   ]
 }
