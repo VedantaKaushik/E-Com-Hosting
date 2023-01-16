@@ -148,7 +148,7 @@ const SingleProduct = () => {
     const data = { userId, rating: rati, revDesc };
 
     const res = await axios.post(
-      `http://localhost:5000/api/features/review?id=${id}`,
+      `https://voltssr.onrender.com/api/features/review?id=${id}`,
       data
     );
 
