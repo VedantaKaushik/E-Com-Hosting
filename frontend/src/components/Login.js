@@ -62,9 +62,6 @@ const Login = () => {
     reState();
 
     dispatch(userLogin({ email, password }));
-    if (user !== null) {
-      navigate(from, { replace: true });
-    }
 
     if (error) {
       return toast.error(error, {
@@ -78,6 +75,7 @@ const Login = () => {
         theme: "dark",
       });
     }
+    navigate(from, { replace: true });
   };
 
   return (
