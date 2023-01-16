@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import Google from "../assets/Google.png";
@@ -9,6 +9,8 @@ import { ToastContainer, toast } from "react-toastify";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
+  const from = "/";
 
   const { user, token, error } = useSelector((state) => state.auth);
 
@@ -27,12 +29,12 @@ const Login = () => {
   const User = sessionStorage.getItem("user");
   const userId = sessionStorage.getItem("userId");
 
-  useEffect(() => {
-    if ((User && userId) || (user !== null && token !== null)) {
-      navigate("/");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [User, userId]);
+  // useEffect(() => {
+  //   if ((User && userId) || (user !== null && token !== null)) {
+  //     navigate("/");
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [User, userId]);
 
   // Storing State
   const reState = () => {
@@ -60,6 +62,9 @@ const Login = () => {
     reState();
 
     dispatch(userLogin({ email, password }));
+    if (user !== null) {
+      navigate(from, { replace: true });
+    }
 
     if (error) {
       return toast.error(error, {
