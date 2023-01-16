@@ -22,7 +22,7 @@ const Footer = () => {
           <img src={Visa} alt="." />
         </Payments>
         <Desc>
-          <p>Copyright ©2022 All rights reserved | Volts</p>
+          <p>Copyright ©2022 All rights reserved | E-Com</p>
         </Desc>
       </Div>
     </Container>

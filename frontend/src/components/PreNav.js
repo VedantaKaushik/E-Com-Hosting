@@ -26,7 +26,7 @@ const PreNav = () => {
             <Link to="#">
               <EmailDiv>
                 <EmailIcon />
-                <p>support@volts.com</p>
+                <p>support@ecom.com</p>
               </EmailDiv>
             </Link>
           </Div1>
