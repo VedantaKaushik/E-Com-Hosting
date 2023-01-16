@@ -1,15 +1,13 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import Account from "./Account";
 
-const PrivateRoutes = ({ user }) => {
+const PrivateRoutes = ({ user, childern }) => {
   const location = useLocation();
 
-  return user === null ? (
-    <Navigate to="/login" state={{ from: location }} replace />
-  ) : (
-    <Account />
-  );
+  if (user == null) {
+    <Navigate to="/login" state={{ from: location }} replace />;
+  }
+  return childern;
 };
 
 export default PrivateRoutes;
