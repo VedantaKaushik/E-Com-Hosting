@@ -10,19 +10,14 @@ import Footer from "./Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/Slices/AuthSlice";
 import { Country } from "country-state-city";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { UpdateAddress } from "../redux/Slices/UpdateSlice";
 
 const Account = () => {
-  const { id } = useParams();
-  const { AdressLine, city, state, zipCode, phone, country } = useSelector(
-    (state) => state.update
-  );
-
   useEffect(() => {
     document.querySelector("title").textContent = "E-Com | Account";
 
-    if (document.querySelector("title").textContent === "E-Com  | Account") {
+    if (document.querySelector("title").textContent === "Volts | Account") {
       document.getElementById("My-Account").style.color = "#d10024";
     } else {
       document.getElementById("My-Account").style.color = "initial";
@@ -31,163 +26,15 @@ const Account = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const User = useSelector((state) => state.auth.user);
 
-  // Checking if user Exists
-  const User = sessionStorage.getItem("user");
-  const userId = sessionStorage.getItem("userId");
-  const UserDeatil = JSON.parse(User);
-
-  useEffect(() => {
-    if (User === null && userId === null) {
-      navigate("/login");
-      return;
-    }
-  }, [User, navigate, userId]);
-
-  useEffect(() => {
-    if (User !== null && userId !== null) {
-      document.getElementById("Logout").addEventListener("click", () => {
-        sessionStorage.removeItem("user");
-        sessionStorage.removeItem("userId");
-        sessionStorage.removeItem("isAdmin");
-        sessionStorage.removeItem("token");
-        sessionStorage.clear();
-      });
-      dispatch(logout());
-      return;
-    } else {
-      return;
-    }
-  }, [User, dispatch, userId]);
+  const SaveBtn = () => {};
 
   //
-  const [addressState, setAddressState] = useState(AdressLine);
-  const [cityState, setCityState] = useState(city);
-  const [StateState, setStateState] = useState(state);
-  const [zipState, setZipState] = useState(zipCode);
-  const [phoneState, setPhoneState] = useState(phone);
-  const [CountryState, setCountryState] = useState(country);
-
-  //
-  useEffect(() => {
-    if (User) {
-      setAddressState(UserDeatil.userAdress.AdressLine);
-      setCityState(UserDeatil.userAdress.city);
-      setStateState(UserDeatil.userAdress.state);
-      setZipState(UserDeatil.userAdress.zipCode);
-      setPhoneState(UserDeatil.userAdress.phone);
-      setCountryState(UserDeatil.userAdress.country);
-    }
-  }, [User]);
-
-  const Edit = () => {
-    document.querySelector("#save-info").style.pointerEvents = "auto";
-    document.querySelector("#save-info").style.opacity = "100";
-    document.querySelector(".AdressLine").removeAttribute("disabled");
-    document.querySelector(".City").removeAttribute("disabled");
-    document.querySelector(".State").removeAttribute("disabled");
-    document.querySelector(".Zip").removeAttribute("disabled");
-    document.querySelector(".Phone").removeAttribute("disabled");
-    document.querySelector(".Country").removeAttribute("disabled");
+  const LogoutFunc = () => {
+    dispatch(logout());
+    return navigate("/");
   };
-
-  const SaveBtn = () => {
-    const letter = new RegExp("[a-zA-Z][a-zA-Z ]+[a-zA-Z]$");
-    const AdressLine = addressState.trim().replace(/  +/g, " ");
-    if (AdressLine.length < 1 || !letter.test(AdressLine)) {
-      return toast("Enter A Valid Address", {
-        position: "bottom-center",
-        autoClose: 1000,
-        hideProgressBar: true,
-        closeOnClick: false,
-        pauseOnHover: false,
-        draggable: false,
-        progress: 1,
-      });
-    }
-
-    const city = cityState.trim().replace(/ /g, "");
-    if (city.length < 1 || !letter.test(cityState)) {
-      return toast("Enter A Valid City", {
-        position: "bottom-center",
-        autoClose: 1000,
-        hideProgressBar: true,
-        closeOnClick: false,
-        pauseOnHover: false,
-        draggable: false,
-        progress: 1,
-      });
-    }
-
-    const state = StateState.trim().replace(/ /g, "");
-    if (state.length < 1 || !letter.test(StateState)) {
-      return toast("Enter A Valid State", {
-        position: "bottom-center",
-        autoClose: 1000,
-        hideProgressBar: true,
-        closeOnClick: false,
-        pauseOnHover: false,
-        draggable: false,
-        progress: 1,
-      });
-    }
-
-    const zipCode = zipState.trim().replace(/ /g, "");
-    if (zipCode.length < 1) {
-      return toast("Zip-Code Cannot Be Empty", {
-        position: "bottom-center",
-        autoClose: 1000,
-        hideProgressBar: true,
-        closeOnClick: false,
-        pauseOnHover: false,
-        draggable: false,
-        progress: 1,
-      });
-    }
-
-    const phone = phoneState.toString().trim().replace(/ /g, "");
-    if (phone.length !== 10 || phone.length < 10) {
-      return toast("Enter A Valid Phone Number", {
-        position: "bottom-center",
-        autoClose: 1000,
-        hideProgressBar: true,
-        closeOnClick: false,
-        pauseOnHover: false,
-        draggable: false,
-        progress: 1,
-      });
-    }
-
-    const country = CountryState.trim().replace(/ /g, "");
-    if (country === "Country") {
-      return toast("Country is Required", {
-        position: "bottom-center",
-        autoClose: 1000,
-        hideProgressBar: true,
-        closeOnClick: false,
-        pauseOnHover: false,
-        draggable: false,
-        progress: 1,
-      });
-    }
-
-    // Dispatching the req
-    dispatch(
-      UpdateAddress({ AdressLine, city, state, zipCode, phone, country, id })
-    );
-
-    //
-    document.querySelector(".AdressLine").setAttribute("disabled", true);
-    document.querySelector(".City").setAttribute("disabled", true);
-    document.querySelector(".State").setAttribute("disabled", true);
-    document.querySelector(".Zip").setAttribute("disabled", true);
-    document.querySelector(".Phone").setAttribute("disabled", true);
-    document.querySelector(".Country").setAttribute("disabled", true);
-    document.querySelector("#save-info").style.pointerEvents = "none";
-    return;
-  };
-
-  //
   return (
     <>
       <ToastContainer
@@ -205,7 +52,7 @@ const Account = () => {
 
       <PreNav />
       <Header />
-      {UserDeatil === null ? (
+      {User === null ? (
         <></>
       ) : (
         <Container>
@@ -213,11 +60,7 @@ const Account = () => {
             <InfoCard>
               <p>
                 Hello
-                {UserDeatil === null ? (
-                  <></>
-                ) : (
-                  " " + UserDeatil.name.split(" ")[0]
-                )}
+                {User === null ? <></> : " " + User.name.split(" ")[0]}
               </p>
 
               <CardDiv>
@@ -228,7 +71,7 @@ const Account = () => {
                   <span>Orders</span>
                 </Cards>
               </CardDiv>
-              <Logout>
+              <Logout onClick={LogoutFunc}>
                 <Link to="#" id="Logout">
                   <LogoutIcon />
                   Logout
@@ -245,7 +88,7 @@ const Account = () => {
                     type="text"
                     className="name"
                     disabled={true}
-                    value={UserDeatil.name}
+                    value={User.name}
                   />
                   <button>edit</button>
                 </Card>
@@ -255,7 +98,7 @@ const Account = () => {
                     type="email"
                     className="email"
                     disabled={true}
-                    value={UserDeatil.email}
+                    value={User.email}
                   />
                   <button>edit</button>
                 </Card>
@@ -265,17 +108,13 @@ const Account = () => {
               <AdressInfo>
                 <Headerr>
                   <p>Your Address</p>
-                  <button onClick={Edit}>edit</button>
+                  <button>edit</button>
                 </Headerr>
                 <input
                   type="text"
                   placeholder="Address"
                   className="AdressLine"
                   disabled={true}
-                  value={addressState}
-                  onChange={(e) => {
-                    setAddressState(e.target.value);
-                  }}
                 />
 
                 <input
@@ -283,50 +122,27 @@ const Account = () => {
                   placeholder="City"
                   className="City"
                   disabled={true}
-                  value={cityState}
-                  onChange={(e) => {
-                    setCityState(e.target.value);
-                  }}
                 />
                 <input
                   type="text"
                   placeholder="State"
                   className="State"
                   disabled={true}
-                  value={StateState}
-                  onChange={(e) => {
-                    setStateState(e.target.value);
-                  }}
                 />
                 <input
                   type="number"
                   placeholder="Zip-Code"
                   className="Zip"
                   disabled={true}
-                  value={zipState}
-                  onChange={(e) => {
-                    setZipState(e.target.value);
-                  }}
                 />
                 <input
                   type="number"
                   placeholder="Phone Number"
                   className="Phone"
                   disabled={true}
-                  value={phoneState}
-                  onChange={(e) => {
-                    setPhoneState(e.target.value);
-                  }}
                 />
                 <Headerr>
-                  <select
-                    className="Country"
-                    disabled={true}
-                    value={CountryState}
-                    onChange={(e) => {
-                      setCountryState(e.target.value);
-                    }}
-                  >
+                  <select className="Country" disabled={true}>
                     <option>Country</option>
                     {Country.getAllCountries().map((Country) => (
                       <option key={Country.name}>{Country.name}</option>

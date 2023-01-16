@@ -12,15 +12,11 @@ import Loading from "./Loading";
 const Register = () => {
   const navigate = useNavigate();
 
-  const { user, token } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
 
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  // Checking if user Exists
-  const User = sessionStorage.getItem("user");
-  const userId = sessionStorage.getItem("userId");
 
   useEffect(() => {
     // changint the background color
@@ -31,10 +27,10 @@ const Register = () => {
   });
 
   useEffect(() => {
-    if ((User && userId) || (user !== null && token !== null)) {
+    if (user !== null) {
       navigate("/");
     }
-  });
+  }, [user]);
 
   // Storing State
   const reState = () => {
@@ -133,6 +129,25 @@ const Register = () => {
       />
 
       <AlignDiv>
+        <Link
+          to="/"
+          style={{
+            textDecoration: "none",
+          }}
+        >
+          <p
+            style={{
+              fontSize: "5rem",
+              color: "white",
+              fontWeight: 800,
+              justifySelf: "start",
+              margin: "1rem 0",
+              color: "#15161d",
+            }}
+          >
+            E-Com
+          </p>
+        </Link>
         <Container>
           <LoginDiv>
             <Heading>
@@ -203,6 +218,7 @@ const AlignDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 `;
 
 const Container = styled.div`

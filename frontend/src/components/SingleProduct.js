@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PreNav from "./PreNav";
 import Header from "./Header";
 import PreFooter from "./PreFooter";
@@ -35,6 +35,7 @@ const SingleProduct = () => {
   const [mainImage, setMainImage] = useState("");
   const [review, setReview] = useState([]);
   const [Review, setreview] = useState("");
+  const [StockStatus, setStockStatus] = useState("");
 
   const { id } = useParams();
 
@@ -54,42 +55,38 @@ const SingleProduct = () => {
   }, []);
 
   // Soping The desc and Review
-  useEffect(() => {
-    const descBtn = document.getElementById("desc");
-    const revBtn = document.getElementById("rev");
-    const descDiv = document.getElementById("pro-desc");
-    const MobileWrapper = document.getElementById("MobileWrapper");
+  const Descri = useRef(null);
+  const RevBtn = useRef(null);
+  const MobWrap = useRef(null);
+  const ProDescDiv = useRef(null);
 
-    //
-    descBtn.addEventListener("click", () => {
-      descDiv.style.display = "block";
-      revBtn.style.color = "#8d99ae";
-      descBtn.style.color = "#d10024";
-      MobileWrapper.style.display = "none";
-    });
+  const ShowDesc = () => {
+    MobWrap.current.style.display = "none";
+    RevBtn.current.style.color = "#8d99ae";
+    ProDescDiv.current.style.display = "block";
+    Descri.current.style.color = "#d10024";
+  };
 
-    //
-    revBtn.addEventListener("click", () => {
-      descDiv.style.display = "none";
-      revBtn.style.color = "#d10024";
-      descBtn.style.color = "#8d99ae";
-      MobileWrapper.style.display = "block";
-    });
-  });
+  const ShowRev = () => {
+    MobWrap.current.style.display = "block";
+    RevBtn.current.style.color = "#d10024";
+    ProDescDiv.current.style.display = "none";
+    Descri.current.style.color = "#8d99ae";
+  };
 
   // Stock
+  const ShopButtons = useRef(null);
+
   useEffect(() => {
-    const stockStatus = document.querySelector(".Stock");
-    const ShopButtons = document.querySelector(".Buttons");
     if (product.quantity === 0) {
-      stockStatus.textContent = "Out Of Stock";
-      ShopButtons.style.pointerEvents = "none";
+      setStockStatus("Out Of Stock");
+      ShopButtons.current.style.pointerEvents = "none";
     }
 
     if (product.quantity > 0) {
-      stockStatus.textContent = "In Stock";
+      setStockStatus("In Stock");
     }
-  });
+  }, [product.quantity]);
 
   // review
   const userDetail = sessionStorage.getItem("user");
@@ -302,10 +299,10 @@ const SingleProduct = () => {
               </ProductReview>
               <ProductPrice>
                 <p id="price">€{product.price}</p>
-                <p className="Stock"></p>
+                <p className="Stock">{StockStatus}</p>
               </ProductPrice>
               <ProductOptions>{/* Work Left */}</ProductOptions>
-              <CallToAction className="Buttons">
+              <CallToAction className="Buttons" ref={ShopButtons}>
                 <button
                   id="addToCart"
                   onClick={() => {
@@ -331,17 +328,21 @@ const SingleProduct = () => {
           <DescDiv>
             <Select>
               <span id="span-1" />
-              <p id="desc">Description</p>
+              <p ref={Descri} id="desc" onClick={ShowDesc}>
+                Description
+              </p>
               <span id="span-2" />
-              <p id="rev">Reviews</p>
+              <p id="rev" ref={RevBtn} onClick={ShowRev}>
+                Reviews
+              </p>
               <span id="span-1" />
             </Select>
 
-            <ProDesc id="pro-desc">
+            <ProDesc id="pro-desc" ref={ProDescDiv}>
               <p>{product.description}</p>
             </ProDesc>
 
-            <MobileWrapper id="MobileWrapper">
+            <MobileWrapper id="MobileWrapper" ref={MobWrap}>
               <ProRev id="pro-rev">
                 <UserReview>
                   {review.length === 0 ? (
@@ -350,27 +351,58 @@ const SingleProduct = () => {
                     </>
                   ) : (
                     <>
-                      {review.map((rev) => (
-                        <RevLog key={rev.user._id}>
-                          <U>
-                            <p>{rev.user.name}</p>
-                            <Rating
-                              name="read-only"
-                              value={rev.rating}
-                              readOnly
-                              sx={{
-                                svg: {
-                                  color: "#d10024",
-                                },
-                              }}
-                            />
-                          </U>
-                          <D>
-                            <p id="review-description">{rev.revDesc}</p>
-                            <DeleteIcon id="delIcn" />
-                          </D>
-                        </RevLog>
-                      ))}
+                      {review.length > 4 ? (
+                        <>
+                          {review
+                            .map((rev) => (
+                              <RevLog key={rev.user._id}>
+                                <U>
+                                  <p>{rev.user.name}</p>
+                                  <Rating
+                                    name="read-only"
+                                    value={rev.rating}
+                                    readOnly
+                                    sx={{
+                                      svg: {
+                                        color: "#d10024",
+                                      },
+                                    }}
+                                  />
+                                </U>
+                                <D>
+                                  <p id="review-description">{rev.revDesc}</p>
+                                  <DeleteIcon id="delIcn" />
+                                </D>
+                              </RevLog>
+                            ))
+                            .slice(0, 4)}
+                          <p className="viewmore">View All</p>
+                        </>
+                      ) : (
+                        <>
+                          {review.map((rev) => (
+                            <RevLog key={rev.user._id}>
+                              <U>
+                                <p>{rev.user.name}</p>
+                                <Rating
+                                  name="read-only"
+                                  value={rev.rating}
+                                  readOnly
+                                  sx={{
+                                    svg: {
+                                      color: "#d10024",
+                                    },
+                                  }}
+                                />
+                              </U>
+                              <D>
+                                <p id="review-description">{rev.revDesc}</p>
+                                <DeleteIcon id="delIcn" />
+                              </D>
+                            </RevLog>
+                          ))}
+                        </>
+                      )}
                     </>
                   )}
                 </UserReview>
@@ -682,7 +714,11 @@ const MainImage = styled.div`
   }
 `;
 
-const DescDiv = styled.div``;
+const DescDiv = styled.div`
+  #desc {
+    color: #d10024;
+  }
+`;
 
 const Select = styled.div`
   display: flex;
@@ -790,12 +826,26 @@ const UserReview = styled.div`
     display: none; // Work left
   }
 
+  .viewmore {
+    height: 8rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    cursor: pointer;
+  }
+
   @media (max-width: 768px) {
     display: flex;
-    height: 20rem;
+    height: 27rem;
     align-items: flex-start;
     flex-direction: column;
     gap: 1rem;
+
+    .viewmore {
+      height: 3rem;
+    }
   }
 `;
 

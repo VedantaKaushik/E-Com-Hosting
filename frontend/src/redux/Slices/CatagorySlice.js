@@ -12,10 +12,10 @@ const initialState = {
 //
 export const SearchCatagory = createAsyncThunk(
   "/api/products/catagory",
-  async ({ catagory, page, limit }, thunkApi) => {
+  async ({ catagory, page, limit, select }, thunkApi) => {
     try {
       const res = await axios.get(
-        `https://voltssr.onrender.com/api/products/catagory?catagory=${catagory}&page=${page}&limit=${limit}`
+        `https://voltssr.onrender.com/api/products/catagory?catagory=${catagory}&page=${page}&limit=${limit}&sort=${select}`
       );
 
       return res.data;

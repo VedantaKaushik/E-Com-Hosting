@@ -1,9 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const initialState = {
   user: null,
-  token: null,
+  isLogedIn: false,
+  user_id: null,
   isLoading: false,
   error: null,
   isSucess: false,
@@ -16,19 +18,10 @@ export const userLogin = createAsyncThunk(
     try {
       const data = { email, password };
 
-      const res = await axios.post(
-        "https://voltssr.onrender.com/api/user/login",
-        data,
-        {
-          "Content-Type": "application/json",
-          withCredentials: true,
-        }
-      );
-
-      // Saving Data In Sesion Storage
-      sessionStorage.setItem("user", JSON.stringify(res.data.user));
-      sessionStorage.setItem("isAdmin", res.data.isAdmin);
-      sessionStorage.setItem("userId", res.data._id);
+      const res = await axios.post("/user/login", data, {
+        "Content-Type": "application/json",
+        withCredentials: true,
+      });
 
       return res.data;
     } catch (error) {
@@ -45,7 +38,8 @@ const AuthSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.user = null;
-      state.token = null;
+      state.user_id = null;
+      state.isLogedIn = false;
     },
   },
 
@@ -54,7 +48,8 @@ const AuthSlice = createSlice({
       state.isLoading = false;
       state.isSucess = true;
       state.user = payload.user;
-      state.token = payload.token;
+      state.isLogedIn = true;
+      state.user_id = payload._id;
       return;
     },
 
@@ -65,7 +60,19 @@ const AuthSlice = createSlice({
     [userLogin.rejected]: (state, { payload }) => {
       state.error = payload.message;
       state.isLoading = false;
-      return;
+
+      if (state.error != null) {
+        return toast.error(payload.message, {
+          position: "bottom-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "dark",
+        });
+      }
     },
   },
 });

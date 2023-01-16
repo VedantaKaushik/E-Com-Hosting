@@ -1,17 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import CallIcon from "@mui/icons-material/Call";
+// import CallIcon from "@mui/icons-material/Call";
 import EmailIcon from "@mui/icons-material/Email";
 import EuroIcon from "@mui/icons-material/Euro";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { resetState } from "../redux/Slices/FeatureSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const PreNav = () => {
-  const id = sessionStorage.getItem("userId");
+  const { user_id } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
+
   return (
     <>
       <Container>
@@ -26,7 +27,7 @@ const PreNav = () => {
             <Link to="#">
               <EmailDiv>
                 <EmailIcon />
-                <p>support@ecom.com</p>
+                <p>support@e-com.com</p>
               </EmailDiv>
             </Link>
           </Div1>
@@ -36,7 +37,7 @@ const PreNav = () => {
               <p>EUR</p>
             </CurrencyDiv>
             <Link
-              to={`/account/${id}`}
+              to={`/account/${user_id}`}
               id="My-Account"
               onClick={() => {
                 dispatch(resetState());

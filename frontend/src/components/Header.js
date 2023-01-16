@@ -12,8 +12,6 @@ import { SearchCatagory } from "../redux/Slices/CatagorySlice";
 const Header = () => {
   const { product, sq, error } = useSelector((state) => state.features);
 
-  const path = window.location.pathname;
-
   const dispatch = useDispatch();
   const [search, setSearch] = useState(sq);
   const { totalQuantity } = useSelector((state) => state.cart);
@@ -32,6 +30,7 @@ const Header = () => {
   // Search Func
   let q = search.replace(/  +/g, " ").trim();
   const navigate = useNavigate();
+  const select = "Relevance";
 
   const SearchFunc = () => {
     if (q.length < 3) {
@@ -49,7 +48,7 @@ const Header = () => {
     dispatch(getQuery(q));
     const limit = 8;
     const page = 1;
-    dispatch(searchApi({ q, limit, page }));
+    dispatch(searchApi({ q, limit, page, select }));
   };
 
   useEffect(() => {
@@ -63,35 +62,18 @@ const Header = () => {
   }, [error, product]);
 
   useEffect(() => {
+    const t = document.querySelector("title");
     // Home
-    if (path === "/") {
+    if (t.textContent === "Volts | Home") {
       document.querySelector("#home").classList.add("active");
     } else {
       document.querySelector("#home").classList.remove("active");
     }
     // Products
-    if (path === "/products") {
+    if (t.textContent === "Volts | Products") {
       document.querySelector("#products").classList.add("active");
     } else {
       document.querySelector("#products").classList.remove("active");
-    }
-    // earbuds
-    if (path === "/products/category/WirelessEarbuds") {
-      document.querySelector("#earbuds").classList.add("active");
-    } else {
-      document.querySelector("#earbuds").classList.remove("active");
-    }
-    // charger
-    if (path === "/products/category/Chargers") {
-      document.querySelector("#charger").classList.add("active");
-    } else {
-      document.querySelector("#charger").classList.remove("active");
-    }
-    // Headphone
-    if (path === "/products/category/Headphones") {
-      document.querySelector("#headphone").classList.add("active");
-    } else {
-      document.querySelector("#headphone").classList.remove("active");
     }
   });
 
@@ -119,7 +101,7 @@ const Header = () => {
                 dispatch(resetState());
               }}
             >
-              <p className="logo">E-Com</p>
+              <p className="logo">Volts.</p>
             </Link>
           </Info>
           <Search>
@@ -205,9 +187,10 @@ const Header = () => {
               onClick={() => {
                 dispatch(
                   SearchCatagory({
-                    catagory: "Wireless Earbuds",
+                    catagory: "WirelessEarbuds",
                     page: 1,
                     limit: 8,
+                    select,
                   })
                 );
                 dispatch(resetState());
@@ -225,6 +208,7 @@ const Header = () => {
                     catagory: "charger",
                     page: 1,
                     limit: 8,
+                    select,
                   })
                 );
                 dispatch(resetState());
@@ -234,7 +218,6 @@ const Header = () => {
             </Link>
 
             <Link
-              id="headphone"
               to={`/products/category/${"Headphones"}`}
               onClick={() => {
                 dispatch(
@@ -242,6 +225,7 @@ const Header = () => {
                     catagory: "headphone",
                     page: 1,
                     limit: 8,
+                    select,
                   })
                 );
                 dispatch(resetState());
@@ -266,7 +250,7 @@ const Header = () => {
                 dispatch(resetState());
               }}
             >
-              <span id="home">Home</span>
+              Home
             </Link>
 
             <Link
@@ -284,9 +268,10 @@ const Header = () => {
               onClick={() => {
                 dispatch(
                   SearchCatagory({
-                    catagory: "Wireless Earbuds",
+                    catagory: "WirelessEarbuds",
                     page: 1,
                     limit: 8,
+                    select,
                   })
                 );
                 dispatch(resetState());
@@ -304,6 +289,7 @@ const Header = () => {
                     catagory: "charger",
                     page: 1,
                     limit: 8,
+                    select,
                   })
                 );
                 dispatch(resetState());
@@ -313,7 +299,6 @@ const Header = () => {
             </Link>
 
             <Link
-              id="headphone"
               to={`/products/category/${"Headphones"}`}
               onClick={() => {
                 dispatch(
@@ -321,6 +306,7 @@ const Header = () => {
                     catagory: "headphone",
                     page: 1,
                     limit: 8,
+                    select,
                   })
                 );
                 dispatch(resetState());

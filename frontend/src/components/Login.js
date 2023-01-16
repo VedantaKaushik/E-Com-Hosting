@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import Google from "../assets/Google.png";
@@ -9,10 +9,8 @@ import { ToastContainer, toast } from "react-toastify";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const location = useLocation();
-  const from = "/";
 
-  const { user, token, error } = useSelector((state) => state.auth);
+  const { user, isLogedIn } = useSelector((state) => state.auth);
 
   const [Email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,19 +20,8 @@ const Login = () => {
     document.querySelector("body").style.backgroundColor = "#F5F5F5";
 
     // Changing the Title
-    document.querySelector("title").textContent = "E-Com | Login";
+    document.querySelector("title").textContent = "Volts | Login";
   });
-
-  // Checking if user Exists
-  const User = sessionStorage.getItem("user");
-  const userId = sessionStorage.getItem("userId");
-
-  // useEffect(() => {
-  //   if ((User && userId) || (user !== null && token !== null)) {
-  //     navigate("/");
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [User, userId]);
 
   // Storing State
   const reState = () => {
@@ -62,21 +49,13 @@ const Login = () => {
     reState();
 
     dispatch(userLogin({ email, password }));
-
-    if (error) {
-      return toast.error(error, {
-        position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: false,
-        pauseOnHover: false,
-        draggable: false,
-        progress: undefined,
-        theme: "dark",
-      });
-    }
-    navigate(from, { replace: true });
   };
+
+  useEffect(() => {
+    if (isLogedIn && user !== null) {
+      return navigate("/");
+    }
+  }, [user, isLogedIn]);
 
   return (
     <>
@@ -94,6 +73,25 @@ const Login = () => {
       />
 
       <AlignDiv>
+        <Link
+          to="/"
+          style={{
+            textDecoration: "none",
+          }}
+        >
+          <p
+            style={{
+              fontSize: "5rem",
+              color: "white",
+              fontWeight: 800,
+              justifySelf: "start",
+              margin: "1rem 0",
+              color: "#15161d",
+            }}
+          >
+            Volts.
+          </p>
+        </Link>
         <Container>
           <LoginDiv>
             <Heading>
@@ -149,6 +147,7 @@ const AlignDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 `;
 
 const Container = styled.div`

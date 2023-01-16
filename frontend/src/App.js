@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 // Components Imports
 import Home from "./Home";
@@ -15,22 +16,30 @@ import ProCatagory from "./components/ProCatagory";
 import CheckoutPage from "./components/pages/CheckoutPage";
 import TrackOrder from "./components/pages/TrackOrder";
 import NotFound from "./components/NotFound";
-import PrivateRoutes from "./components/PrivateRoutes";
+import ProtectedRoutes from "./components/ProtectedRoutes";
+import ForgotPassword from "./components/pages/ForgotPassword";
 
 const App = () => {
-  const User = sessionStorage.getItem("user");
+  const { isLogedIn } = useSelector((state) => state.auth);
 
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
-      <Route element={<PrivateRoutes user={User} />}>
-        <Route path="/account/:id" element={<Account />} />
-      </Route>
+      <Route
+        path="/account/:id"
+        element={
+          <ProtectedRoutes isLogedIn={isLogedIn}>
+            <Account />
+          </ProtectedRoutes>
+        }
+      />
 
       <Route path="/cart" element={<Cart />} />
+      <Route path="/forgot/password" element={<ForgotPassword />} />
       <Route path="/products" element={<AllProducts />} />
       <Route path="/products/:id" element={<SearchedProduct />} />
       <Route path="/products/category/:id" element={<ProCatagory />} />

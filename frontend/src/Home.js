@@ -9,12 +9,11 @@ import FeaturedProducts from "./components/FeaturedProducts";
 import NewsLetter from "./components/NewsLetter";
 import Footer from "./components/Footer";
 import PreFooter from "./components/PreFooter";
-import { Outlet } from "react-router-dom";
 
 const Home = () => {
   // Changing The Title
   useEffect(() => {
-    document.querySelector("title").textContent = "E-Com | Home";
+    document.querySelector("title").textContent = "Volts | Home";
   });
 
   return (
@@ -26,7 +25,6 @@ const Home = () => {
       <NewsLetter />
       <PreFooter />
       <Footer />
-      <Outlet />
     </>
   );
 };

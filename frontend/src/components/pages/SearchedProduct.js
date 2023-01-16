@@ -28,7 +28,23 @@ const SearchedProduct = () => {
 
   const [page, setPage] = useState(1);
 
+  const options = [
+    {
+      text: "Relevance",
+      value: "Relevance",
+    },
+    {
+      text: "Price Ascending",
+      vlaue: "rice Ascending",
+    },
+    {
+      text: "Price Descending",
+      value: "Price Descending",
+    },
+  ];
+
   const [Product, setProduct] = useState([]);
+  const [select, setSelect] = useState(options[0].value);
 
   useEffect(() => {
     if (product) {
@@ -38,12 +54,12 @@ const SearchedProduct = () => {
     if (sq.length <= 1) {
       navigate("/products");
     }
-  });
+  }, [product]);
 
   useEffect(() => {
     const limit = 8;
-    dispatch(searchApi({ q: sq, limit, page }));
-  }, [page]);
+    dispatch(searchApi({ q: sq, limit, page, select }));
+  }, [page, select]);
 
   const totalPage = Math.ceil(productLength / 8);
 
@@ -59,6 +75,9 @@ const SearchedProduct = () => {
     }
   };
 
+  const changeSelect = (e) => {
+    setSelect(e.target.value);
+  };
   return (
     <>
       <PreNav />
@@ -74,12 +93,12 @@ const SearchedProduct = () => {
         ) : (
           <>
             <FilterDiv>
-              <Sort style={{ display: "none" }}>
+              <Sort>
                 <SortIcon />
-                <span>Sort</span>
-                <select>
-                  <option>Price Ascending</option>
-                  <option>Price Descending</option>
+                <select value={select} onChange={changeSelect}>
+                  {options.map((option) => (
+                    <option key={option.text}>{option.text}</option>
+                  ))}
                 </select>
               </Sort>
               <Filter style={{ display: "none" }}>
@@ -250,6 +269,13 @@ const Sort = styled.div`
   margin: 0 0 0 2rem;
   gap: 0.5rem;
   cursor: pointer;
+
+  select {
+    width: fit-content;
+    height: 3rem;
+    font-size: 1.5rem;
+    outline: none;
+  }
 `;
 
 const Container = styled.div`
@@ -258,7 +284,6 @@ const Container = styled.div`
   justify-content: flex-start;
   width: 80%;
   margin: 2rem auto;
-  gap: 4rem;
 
   @media (max-width: 768px) {
     justify-content: center;

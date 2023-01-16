@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import PreNav from "../PreNav";
 import Header from "../Header";
@@ -9,8 +9,14 @@ import Loading from "../Loading";
 import { ToastContainer, toast } from "react-toastify";
 
 const TrackOrder = () => {
+  // Title Change
+  useEffect(() => {
+    document.querySelector("title").textContent = "E-Com | Track";
+  });
+
   const [id, setId] = useState("");
   const [loading, setLoading] = useState(false);
+  const statusText = useRef(null);
 
   // get order Details
   const GetStatus = async () => {
@@ -45,23 +51,21 @@ const TrackOrder = () => {
     const info = res.data.order.status;
     const remarks = res.data.order.remarks;
 
-    const statusText = document.querySelector(".statusText");
-
     // Showing status
     if (info === "Unfulfilled") {
-      statusText.textContent = `Your Order is ${info}, it will be Shipped Soon.`;
+      statusText.current.textContent = `Your Order is ${info}, it will be Shipped Soon.`;
     }
     if (info === "Shipped") {
-      statusText.textContent = `Your Order is ${info} with Tracking Id #${remarks.tracid} via ${remarks.courierName}.`;
+      statusText.current.textContent = `Your Order is ${info} with Tracking Id #${remarks.tracid} via ${remarks.courierName}.`;
     }
     if (info === "Returned") {
-      statusText.textContent = `Your Order is ${info} back to the seller.`;
+      statusText.current.textContent = `Your Order is ${info} back to the seller.`;
     }
     if (info === "Cancelled") {
-      statusText.textContent = `Your Order was ${info}.`;
+      statusText.current.textContent = `Your Order was ${info}.`;
     }
     if (info === "Fulfilled") {
-      statusText.textContent = `Your Order was Delivered.`;
+      statusText.current.textContent = `Your Order was Delivered.`;
     }
     return;
   };
@@ -99,7 +103,7 @@ const TrackOrder = () => {
             <button onClick={GetStatus}>Track</button>
           </TrackInput>
           <W>
-            <p className="statusText"></p>
+            <p className="statusText" ref={statusText}></p>
           </W>
         </Div>
       </Container>

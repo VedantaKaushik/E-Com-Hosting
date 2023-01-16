@@ -5,13 +5,14 @@ import Header from "./Header";
 import SortIcon from "@mui/icons-material/Sort";
 import TuneIcon from "@mui/icons-material/Tune";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { updateCart } from "../redux/Slices/CartSlice";
 import Footer from "./Footer";
 import PreFooter from "./PreFooter";
 import Rating from "@mui/material/Rating";
 import Pagination from "@mui/material/Pagination";
 import { resetState } from "../redux/Slices/FeatureSlice";
+import { SearchCatagory } from "../redux/Slices/CatagorySlice";
 
 const ProCatagory = () => {
   useEffect(() => {
@@ -22,14 +23,52 @@ const ProCatagory = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { id } = useParams();
+
+  const options = [
+    {
+      text: "Relevance",
+      value: "Relevance",
+    },
+    {
+      text: "Price Ascending",
+      vlaue: "rice Ascending",
+    },
+    {
+      text: "Price Descending",
+      value: "Price Descending",
+    },
+  ];
 
   const [page, setPage] = useState(1);
 
   const [Product, setProduct] = useState([]);
+  const [select, setSelect] = useState(options[0].value);
 
   useEffect(() => {
     setProduct(products);
   }, [products]);
+
+  useEffect(() => {
+    const limit = 8;
+    let catagory = id;
+
+    // eslint-disable-next-line default-case
+    switch (id) {
+      case "Chargers":
+        catagory = "Charger";
+        break;
+      case "WirelessEarbuds":
+        catagory = "WirelessEarbud";
+        break;
+      case "Headphones":
+        catagory = "Headphone";
+        break;
+    }
+
+    dispatch(SearchCatagory({ catagory, page, limit, select }));
+    setProduct(products);
+  }, [select]);
 
   // Average Rating
   const Avg = (rev) => {
@@ -44,6 +83,10 @@ const ProCatagory = () => {
   };
 
   const totalPage = Math.ceil(proLength / 8);
+
+  const changeSelect = (e) => {
+    setSelect(e.target.value);
+  };
 
   return (
     <>
@@ -60,12 +103,12 @@ const ProCatagory = () => {
         ) : (
           <>
             <FilterDiv>
-              <Sort style={{ display: "none" }}>
+              <Sort>
                 <SortIcon />
-                <span>Sort</span>
-                <select>
-                  <option>Price Ascending</option>
-                  <option>Price Descending</option>
+                <select value={select} onChange={changeSelect}>
+                  {options.map((option) => (
+                    <option key={option.text}>{option.text}</option>
+                  ))}
                 </select>
               </Sort>
               <Filter style={{ display: "none" }}>
@@ -236,6 +279,13 @@ const Sort = styled.div`
   margin: 0 0 0 2rem;
   gap: 0.5rem;
   cursor: pointer;
+
+  select {
+    width: fit-content;
+    height: 3rem;
+    font-size: 1.5rem;
+    outline: none;
+  }
 `;
 
 const Container = styled.div`

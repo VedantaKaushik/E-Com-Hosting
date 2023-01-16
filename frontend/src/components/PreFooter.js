@@ -16,8 +16,9 @@ const PreFooter = () => {
           <Info>
             <p className="Heading">About Us</p>
             <p className="desc">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
-              accusantium consequatur ex possimus perferendis alias?
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Provident totam eaque consectetur sunt, cum soluta velit eos
+              officiis.
             </p>
           </Info>
 
