@@ -9,6 +9,7 @@ import FeaturedProducts from "./components/FeaturedProducts";
 import NewsLetter from "./components/NewsLetter";
 import Footer from "./components/Footer";
 import PreFooter from "./components/PreFooter";
+import { Outlet } from "react-router-dom";
 
 const Home = () => {
   // Changing The Title
@@ -25,6 +26,7 @@ const Home = () => {
       <NewsLetter />
       <PreFooter />
       <Footer />
+      <Outlet />
     </>
   );
 };
