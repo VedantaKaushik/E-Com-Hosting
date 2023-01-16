@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import PreNav from "./PreNav";
 import Header from "./Header";
@@ -35,6 +35,7 @@ const Account = () => {
     dispatch(logout());
     return navigate("/");
   };
+
   return (
     <>
       <ToastContainer

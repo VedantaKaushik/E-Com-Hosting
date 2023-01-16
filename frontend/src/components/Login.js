@@ -10,7 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user, isLogedIn } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
 
   const [Email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -52,10 +52,10 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (isLogedIn && user !== null) {
+    if (user !== null) {
       return navigate("/");
     }
-  }, [user, isLogedIn]);
+  }, [user]);
 
   return (
     <>

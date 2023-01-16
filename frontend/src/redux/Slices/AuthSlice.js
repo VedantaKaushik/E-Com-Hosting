@@ -18,10 +18,14 @@ export const userLogin = createAsyncThunk(
     try {
       const data = { email, password };
 
-      const res = await axios.post("/user/login", data, {
-        "Content-Type": "application/json",
-        withCredentials: true,
-      });
+      const res = await axios.post(
+        "https://voltssr.onrender.com/api/user/login",
+        data,
+        {
+          "Content-Type": "application/json",
+          withCredentials: true,
+        }
+      );
 
       return res.data;
     } catch (error) {

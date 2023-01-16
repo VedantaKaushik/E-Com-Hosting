@@ -7,6 +7,4 @@ Features Include :-
 [3] Account Opening for Customers
 [4] Review System for individual product
 [5] Searching for a product
-[6] Pagination
-
-And Much more..
+[6] Pagination and Sorting
