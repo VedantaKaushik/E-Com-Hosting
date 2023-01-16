@@ -182,7 +182,7 @@ const SingleProduct = () => {
   // get All review
   const getRev = async () => {
     const res = await axios.get(
-      `http://localhost:5000/api/product/reviews?id=${id}`
+      `https://voltssr.onrender.com/api/product/reviews?id=${id}`
     );
 
     setReview(res.data.review);

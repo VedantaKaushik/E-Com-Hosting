@@ -26,14 +26,9 @@ const App = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
-      <Route
-        path="/account/:id"
-        element={
-          <PrivateRoutes user={User}>
-            <Account />
-          </PrivateRoutes>
-        }
-      />
+      <Route element={<PrivateRoutes user={User} />}>
+        <Route path="/account/:id" element={<Account />} />
+      </Route>
 
       <Route path="/cart" element={<Cart />} />
       <Route path="/products" element={<AllProducts />} />
