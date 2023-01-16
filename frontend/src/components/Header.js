@@ -64,13 +64,13 @@ const Header = () => {
   useEffect(() => {
     const t = document.querySelector("title");
     // Home
-    if (t.textContent === "Volts | Home") {
+    if (t.textContent === "E-Com | Home") {
       document.querySelector("#home").classList.add("active");
     } else {
       document.querySelector("#home").classList.remove("active");
     }
     // Products
-    if (t.textContent === "Volts | Products") {
+    if (t.textContent === "E-Com | Products") {
       document.querySelector("#products").classList.add("active");
     } else {
       document.querySelector("#products").classList.remove("active");
