@@ -12,7 +12,7 @@ dotenv.config({ path: "./config.env" });
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "100mb", extended: true }));
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({ origin: ["https://voltssr.onrender.com"] }));
 app.use(fileupload());
 
 // Routes
