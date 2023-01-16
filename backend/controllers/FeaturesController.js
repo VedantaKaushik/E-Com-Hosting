@@ -6,7 +6,21 @@ export const SearchFunc = async (req, res) => {
   try {
     const q = req.query.q;
 
-    const { limit, page } = req.query;
+    let { limit, page, sort } = req.query;
+
+    switch (sort) {
+      case "Relevance":
+        sort = null;
+        break;
+
+      case "Price Ascending":
+        sort = 1;
+        break;
+
+      case "Price Descending":
+        sort = -1;
+        break;
+    }
 
     const skip = (page - 1) * 8;
 
@@ -16,28 +30,59 @@ export const SearchFunc = async (req, res) => {
         .json("Product Name Should Be Minimum 3 Characters");
     }
 
-    const result = await ProductModel.find({
-      $or: [
-        { title: { $regex: q, $options: "i" } },
-        { catagory: { $regex: q, $options: "i" } },
-      ],
-    })
-      .limit(limit)
-      .skip(skip);
+    if (sort === null) {
+      {
+        const result = await ProductModel.find({
+          $or: [
+            { title: { $regex: q, $options: "i" } },
+            { catagory: { $regex: q, $options: "i" } },
+          ],
+        })
+          .limit(limit)
+          .skip(skip);
+        if (result.length === 0) {
+          return res.status(404).json("No Product Found");
+        }
 
-    if (result.length === 0) {
-      return res.status(404).json("No Product Found");
+        const Result = await ProductModel.find({
+          $or: [
+            { title: { $regex: q, $options: "i" } },
+            { catagory: { $regex: q, $options: "i" } },
+          ],
+        });
+
+        const ResultLen = Result.length;
+        res.status(200).json({ result, ResultLen });
+      }
     }
 
-    const Result = await ProductModel.find({
-      $or: [
-        { title: { $regex: q, $options: "i" } },
-        { catagory: { $regex: q, $options: "i" } },
-      ],
-    });
+    if (sort !== null) {
+      {
+        const result = await ProductModel.find({
+          $or: [
+            { title: { $regex: q, $options: "i" } },
+            { catagory: { $regex: q, $options: "i" } },
+          ],
+        })
+          .limit(limit)
+          .skip(skip)
+          .sort({ price: sort });
 
-    const ResultLen = Result.length;
-    res.status(200).json({ result, ResultLen });
+        if (result.length === 0) {
+          return res.status(404).json("No Product Found");
+        }
+
+        const Result = await ProductModel.find({
+          $or: [
+            { title: { $regex: q, $options: "i" } },
+            { catagory: { $regex: q, $options: "i" } },
+          ],
+        });
+
+        const ResultLen = Result.length;
+        res.status(200).json({ result, ResultLen });
+      }
+    }
   } catch (error) {
     console.log(error);
   }
@@ -126,36 +171,83 @@ export const GetAllReview = async (req, res) => {
 // GetProductByCAtagory
 export const GetProductByCAtagory = async (req, res) => {
   try {
-    const { catagory, page, limit } = req.query;
+    let { catagory, page, limit, sort } = req.query;
 
     const skip = (page - 1) * 8;
 
-    // Finding the product
-    const product = await ProductModel.find({
-      catagory: {
-        $regex: catagory,
-        $options: "i",
-      },
-    })
-      .limit(limit)
-      .skip(skip);
+    switch (sort) {
+      case "Relevance":
+        sort = null;
+        break;
 
-    const pro = await ProductModel.find({
-      catagory: {
-        $regex: catagory,
-        $options: "i",
-      },
-    });
+      case "Price Ascending":
+        sort = 1;
+        break;
 
-    const proLen = pro.length;
-
-    if (product === 0) {
-      res
-        .status(200)
-        .json({ sucess: false, message: "No Product Found For This Catagory" });
+      case "Price Descending":
+        sort = -1;
+        break;
     }
 
-    res.status(200).json({ sucess: true, product, proLen });
+    if (sort === null) {
+      // Finding the product
+      const product = await ProductModel.find({
+        catagory: {
+          $regex: catagory,
+          $options: "i",
+        },
+      })
+        .limit(limit)
+        .skip(skip);
+      const pro = await ProductModel.find({
+        catagory: {
+          $regex: catagory,
+          $options: "i",
+        },
+      });
+
+      const proLen = pro.length;
+
+      if (product === 0) {
+        res.status(200).json({
+          sucess: false,
+          message: "No Product Found For This Catagory",
+        });
+      }
+
+      res.status(200).json({ sucess: true, product, proLen });
+    }
+
+    if (sort !== null) {
+      // Finding the product
+      const product = await ProductModel.find({
+        catagory: {
+          $regex: catagory,
+          $options: "i",
+        },
+      })
+        .limit(limit)
+        .skip(skip)
+        .sort({ price: sort });
+
+      const pro = await ProductModel.find({
+        catagory: {
+          $regex: catagory,
+          $options: "i",
+        },
+      });
+
+      const proLen = pro.length;
+
+      if (product === 0) {
+        res.status(200).json({
+          sucess: false,
+          message: "No Product Found For This Catagory",
+        });
+      }
+
+      res.status(200).json({ sucess: true, product, proLen });
+    }
   } catch (error) {
     console.log(error);
   }

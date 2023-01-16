@@ -54,12 +54,10 @@ export const LoginAUser = async (req, res) => {
     res
       .status(200)
       .cookie("token", token, {
+        httpOnly: false,
         maxAge: 86400000,
-        httpOnly: true,
-        sameSite: "none",
-        secure: true,
       })
-      .json({ sucess: true, user, _id, isAdmin, token });
+      .json({ sucess: true, user, _id });
   } catch (error) {
     res.status(500);
     console.log(error);

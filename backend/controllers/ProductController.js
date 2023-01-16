@@ -81,6 +81,7 @@ export const UpdateQuantity = async (req, res) => {
     console.log(error);
   }
 };
+
 // Update Price
 export const UpdatePrice = async (req, res) => {
   try {
@@ -104,6 +105,7 @@ export const UpdatePrice = async (req, res) => {
   }
 };
 
+//
 export const UpdateTitleDesc = async (req, res) => {
   try {
     const { id } = req.query;
@@ -137,19 +139,49 @@ export const UpdateImages = async (req, res) => {
 // Getting All Product
 export const GetAllProduct = async (req, res) => {
   try {
-    const { limit, page } = req.query;
+    let { limit, page, sort } = req.query;
+
+    switch (sort) {
+      case "Relevance":
+        sort = null;
+        break;
+
+      case "Price Ascending":
+        sort = 1;
+        break;
+
+      case "Price Descending":
+        sort = -1;
+        break;
+    }
 
     const skip = (page - 1) * 8;
 
-    const products = await ProductModel.find().limit(limit).skip(skip);
+    if (sort === null) {
+      const products = await ProductModel.find().limit(limit).skip(skip).sort();
+      if (products.length < 1) {
+        return res.status(404).json("No Product Avalible");
+      }
 
-    if (products.length < 1) {
-      return res.status(404).json("No Product Avalible");
+      const TotalProduct = await ProductModel.find();
+      const productLength = TotalProduct.length;
+      res.status(200).json({ sucess: true, products, productLength });
     }
 
-    const TotalProduct = await ProductModel.find();
-    const productLength = TotalProduct.length;
-    res.status(200).json({ sucess: true, products, productLength });
+    if (sort !== null) {
+      const products = await ProductModel.find()
+        .limit(limit)
+        .skip(skip)
+        .sort({ price: sort });
+
+      if (products.length < 1) {
+        return res.status(404).json("No Product Avalible");
+      }
+
+      const TotalProduct = await ProductModel.find();
+      const productLength = TotalProduct.length;
+      res.status(200).json({ sucess: true, products, productLength });
+    }
   } catch (error) {
     console.log(error);
   }
