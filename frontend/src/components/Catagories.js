@@ -9,7 +9,7 @@ const Catagories = () => {
   // Changing the Title
   const c = "ear";
   useEffect(() => {
-    document.querySelector("title").textContent = `Volts | ${c}`;
+    document.querySelector("title").textContent = `E-Com | ${c}`;
   });
 
   return (

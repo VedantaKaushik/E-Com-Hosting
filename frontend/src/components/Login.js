@@ -20,7 +20,7 @@ const Login = () => {
     document.querySelector("body").style.backgroundColor = "#F5F5F5";
 
     // Changing the Title
-    document.querySelector("title").textContent = "Volts | Login";
+    document.querySelector("title").textContent = "E-Com | Login";
   });
 
   // Checking if user Exists

@@ -23,7 +23,7 @@ const AllProducts = () => {
 
   const totalPage = Math.ceil(productLength / 8);
   useEffect(() => {
-    document.querySelector("title").textContent = "Volts | Products";
+    document.querySelector("title").textContent = "E-Com | Products";
   });
 
   useEffect(() => {

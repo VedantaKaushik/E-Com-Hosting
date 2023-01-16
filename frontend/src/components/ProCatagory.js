@@ -15,7 +15,7 @@ import { resetState } from "../redux/Slices/FeatureSlice";
 
 const ProCatagory = () => {
   useEffect(() => {
-    document.querySelector("title").textContent = `Volts | Products`;
+    document.querySelector("title").textContent = `E-Com | Products`;
   });
 
   const { error, products, proLength } = useSelector((s) => s.catagory);

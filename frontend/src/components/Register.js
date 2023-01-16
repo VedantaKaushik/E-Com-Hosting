@@ -27,7 +27,7 @@ const Register = () => {
     document.querySelector("body").style.backgroundColor = "#F5F5F5";
 
     // Changing the Title
-    document.querySelector("title").textContent = "Volts | Register";
+    document.querySelector("title").textContent = "E-Com | Register";
   });
 
   useEffect(() => {

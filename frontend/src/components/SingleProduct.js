@@ -22,7 +22,7 @@ const SingleProduct = () => {
 
   // Changing the title
   useEffect(() => {
-    document.querySelector("title").textContent = "Volts | Product";
+    document.querySelector("title").textContent = "E-Com | Product";
   });
 
   const dispatch = useDispatch();

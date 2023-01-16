@@ -25,7 +25,7 @@ const Cart = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    document.querySelector("title").textContent = "Volts | Cart";
+    document.querySelector("title").textContent = "E-Com | Cart";
     dispatch(getTotal());
   });
 

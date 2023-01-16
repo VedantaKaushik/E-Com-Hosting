@@ -16,7 +16,7 @@ import { searchApi } from "../../redux/Slices/FeatureSlice";
 
 const SearchedProduct = () => {
   useEffect(() => {
-    document.querySelector("title").textContent = `Volts | Products`;
+    document.querySelector("title").textContent = `E-Com | Products`;
   });
 
   const { product, sq, productLength, error } = useSelector(

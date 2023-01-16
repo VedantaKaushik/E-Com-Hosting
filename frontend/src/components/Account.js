@@ -20,9 +20,9 @@ const Account = () => {
   );
 
   useEffect(() => {
-    document.querySelector("title").textContent = "Volts | Account";
+    document.querySelector("title").textContent = "E-Com | Account";
 
-    if (document.querySelector("title").textContent === "Volts | Account") {
+    if (document.querySelector("title").textContent === "E-Com  | Account") {
       document.getElementById("My-Account").style.color = "#d10024";
     } else {
       document.getElementById("My-Account").style.color = "initial";
