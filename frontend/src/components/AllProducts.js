@@ -40,7 +40,7 @@ const AllProducts = () => {
   const totalPage = Math.ceil(productLength / 8);
 
   useEffect(() => {
-    document.querySelector("title").textContent = "E-Com | Products";
+    document.querySelector("title").textContent = "ECom | Products";
   });
 
   useEffect(() => {

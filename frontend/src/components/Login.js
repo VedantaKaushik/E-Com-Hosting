@@ -20,7 +20,7 @@ const Login = () => {
     document.querySelector("body").style.backgroundColor = "#F5F5F5";
 
     // Changing the Title
-    document.querySelector("title").textContent = "E-Com | Login";
+    document.querySelector("title").textContent = "ECom | Login";
   });
 
   // Storing State
@@ -89,7 +89,7 @@ const Login = () => {
               color: "#15161d",
             }}
           >
-            E-Com
+            ECom
           </p>
         </Link>
         <Container>

@@ -263,7 +263,7 @@ const CheckoutPage = () => {
         <Heading>
           <D>
             <Link to="/">
-              <p className="logo">E-Com</p>
+              <p className="logo">ECom</p>
             </Link>
           </D>
         </Heading>

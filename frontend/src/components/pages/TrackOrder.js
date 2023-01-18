@@ -11,7 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 const TrackOrder = () => {
   // Title Change
   useEffect(() => {
-    document.querySelector("title").textContent = "E-Com | Track";
+    document.querySelector("title").textContent = "ECom | Track";
   });
 
   const [id, setId] = useState("");

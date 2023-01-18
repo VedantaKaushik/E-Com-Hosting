@@ -15,9 +15,9 @@ import { UpdateAddress } from "../redux/Slices/UpdateSlice";
 
 const Account = () => {
   useEffect(() => {
-    document.querySelector("title").textContent = "E-Com | Account";
+    document.querySelector("title").textContent = "ECom | Account";
 
-    if (document.querySelector("title").textContent === "E-Com | Account") {
+    if (document.querySelector("title").textContent === "ECom | Account") {
       document.getElementById("My-Account").style.color = "#d10024";
     } else {
       document.getElementById("My-Account").style.color = "initial";

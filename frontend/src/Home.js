@@ -13,7 +13,7 @@ import PreFooter from "./components/PreFooter";
 const Home = () => {
   // Changing The Title
   useEffect(() => {
-    document.querySelector("title").textContent = "E-Com | Home";
+    document.querySelector("title").textContent = "ECom | Home";
   });
 
   return (

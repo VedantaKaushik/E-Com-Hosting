@@ -64,13 +64,13 @@ const Header = () => {
   useEffect(() => {
     const t = document.querySelector("title");
     // Home
-    if (t.textContent === "E-Com | Home") {
+    if (t.textContent === "ECom | Home") {
       document.querySelector("#home").classList.add("active");
     } else {
       document.querySelector("#home").classList.remove("active");
     }
     // Products
-    if (t.textContent === "E-Com | Products") {
+    if (t.textContent === "ECom | Products") {
       document.querySelector("#products").classList.add("active");
     } else {
       document.querySelector("#products").classList.remove("active");
@@ -101,7 +101,7 @@ const Header = () => {
                 dispatch(resetState());
               }}
             >
-              <p className="logo">E-Com</p>
+              <p className="logo">ECom</p>
             </Link>
           </Info>
           <Search>

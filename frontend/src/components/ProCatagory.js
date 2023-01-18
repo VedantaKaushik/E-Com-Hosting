@@ -16,7 +16,7 @@ import { SearchCatagory } from "../redux/Slices/CatagorySlice";
 
 const ProCatagory = () => {
   useEffect(() => {
-    document.querySelector("title").textContent = `E-Com | Products`;
+    document.querySelector("title").textContent = `ECom | Products`;
   });
 
   const { error, products, proLength } = useSelector((s) => s.catagory);

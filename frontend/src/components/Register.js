@@ -23,7 +23,7 @@ const Register = () => {
     document.querySelector("body").style.backgroundColor = "#F5F5F5";
 
     // Changing the Title
-    document.querySelector("title").textContent = "E-Com | Register";
+    document.querySelector("title").textContent = "ECom | Register";
   });
 
   useEffect(() => {
@@ -145,7 +145,7 @@ const Register = () => {
               color: "#15161d",
             }}
           >
-            E-Com
+            ECom
           </p>
         </Link>
         <Container>
