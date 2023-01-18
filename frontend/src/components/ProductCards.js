@@ -48,7 +48,7 @@ const ProductCards = () => {
                   />
                   | <p>{product.review.length} reviews</p>
                 </CardRev>
-                <CardPrice>€{product.price}</CardPrice>
+                <CardPrice>₹{product.price}</CardPrice>
               </Link>
               <CardButton
                 onClick={() => {

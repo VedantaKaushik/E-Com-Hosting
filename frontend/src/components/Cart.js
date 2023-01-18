@@ -57,7 +57,7 @@ const Cart = () => {
               />
             </Quantiy>
             <Price>
-              €{product.price}
+              ₹{product.price}
               <CloseIcon />
             </Price>
           </ProductCards>
@@ -84,7 +84,7 @@ const Cart = () => {
                   <p>Total</p>
                   <SubTotal>
                     <p>Sub-total</p>
-                    <p>€{priceTotal}</p>
+                    <p>₹{priceTotal}</p>
                   </SubTotal>
                   <Shipping>
                     <p>Shipping</p>

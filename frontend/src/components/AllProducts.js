@@ -146,6 +146,7 @@ const FilterDiv = styled.div`
     font-size: 1rem;
     width: 2rem;
     border: none;
+    background-color: transparent;
   }
 `;
 

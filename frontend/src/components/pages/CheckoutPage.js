@@ -263,7 +263,7 @@ const CheckoutPage = () => {
         <Heading>
           <D>
             <Link to="/">
-              <p className="logo">Volts.</p>
+              <p className="logo">E-Com</p>
             </Link>
           </D>
         </Heading>
@@ -392,7 +392,7 @@ const CheckoutPage = () => {
                   ))}
                 </Wrapper>
 
-                <p className="Total">Total : €{priceTotal}</p>
+                <p className="Total">Total : ₹{priceTotal}</p>
 
                 <button onClick={ContinueToPay}>Continue To Payment</button>
               </Card>
@@ -428,7 +428,7 @@ const CheckoutPage = () => {
                   ))}
                 </Wrapper>
 
-                <p className="Total">Total : €{priceTotal}</p>
+                <p className="Total">Total : ₹{priceTotal}</p>
 
                 <button onClick={WriteAddress}>Continue To Address</button>
               </Card>

@@ -136,7 +136,7 @@ const SearchedProduct = () => {
                         />
                         | <p>{products.review.length} reviews</p>
                       </CardRev>
-                      <CardPrice>€{products.price}</CardPrice>
+                      <CardPrice>₹{products.price}</CardPrice>
                     </span>
                     <CardButton
                       onClick={() => {
@@ -246,6 +246,7 @@ const FilterDiv = styled.div`
     font-size: 1rem;
     width: 2rem;
     border: none;
+    background-color: transparent;
   }
 `;
 

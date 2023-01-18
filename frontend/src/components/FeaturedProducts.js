@@ -64,7 +64,7 @@ const FeaturedProducts = () => {
                   />
                   | <p> {products.review.length} reviews</p>
                 </CardRev>
-                <CardPrice>€{products.price}</CardPrice>
+                <CardPrice>₹{products.price}</CardPrice>
               </Link>
               <CardButton
                 onClick={() => {

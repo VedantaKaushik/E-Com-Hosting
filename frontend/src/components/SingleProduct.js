@@ -298,7 +298,7 @@ const SingleProduct = () => {
                 |<p>{review.length} reviews</p>
               </ProductReview>
               <ProductPrice>
-                <p id="price">€{product.price}</p>
+                <p id="price">₹{product.price}</p>
                 <p className="Stock">{StockStatus}</p>
               </ProductPrice>
               <ProductOptions>{/* Work Left */}</ProductOptions>

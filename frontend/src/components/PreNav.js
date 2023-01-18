@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 // import CallIcon from "@mui/icons-material/Call";
 import EmailIcon from "@mui/icons-material/Email";
-import EuroIcon from "@mui/icons-material/Euro";
+// import EuroIcon from "@mui/icons-material/Euro";
+import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { resetState } from "../redux/Slices/FeatureSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,14 +28,15 @@ const PreNav = () => {
             <Link to="#">
               <EmailDiv>
                 <EmailIcon />
-                <p>support@e-com.com</p>
+                <p>support@ecom.com</p>
               </EmailDiv>
             </Link>
           </Div1>
           <Div2>
             <CurrencyDiv>
-              <EuroIcon />
-              <p>EUR</p>
+              {/* <EuroIcon /> */}
+              <CurrencyRupeeIcon />
+              <p>INR</p>
             </CurrencyDiv>
             <Link
               to={`/account/${user_id}`}
