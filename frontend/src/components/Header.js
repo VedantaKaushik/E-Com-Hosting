@@ -129,7 +129,7 @@ const Header = () => {
                   dispatch(resetState());
                 }}
               >
-                <p className="logo">Volts.</p>
+                <p className="logo">ECom</p>
               </Link>
             </Info>
             <Search>

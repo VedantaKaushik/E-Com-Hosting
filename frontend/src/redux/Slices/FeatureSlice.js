@@ -35,12 +35,12 @@ const featureSlice = createSlice({
     },
 
     resetState: (state) => {
-      state.isLoading = false;
-      state.error = null;
-      state.sucess = false;
-      state.product = null;
-      state.sq = "";
-      return;
+      // state.isLoading = false;
+      // state.error = null;
+      // state.sucess = false;
+      // state.product = null;
+      // state.sq = "";
+      // return;
     },
   },
 
