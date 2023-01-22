@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Badge from "@mui/material/Badge";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -10,20 +10,19 @@ import { ToastContainer, toast } from "react-toastify";
 import { SearchCatagory } from "../redux/Slices/CatagorySlice";
 
 const Header = () => {
-  const { product, sq, error } = useSelector((state) => state.features);
-
   const dispatch = useDispatch();
-  const [search, setSearch] = useState(sq);
+  const location = useLocation();
+  const [search, setSearch] = useState("");
+
   const { totalQuantity } = useSelector((state) => state.cart);
 
   //Opening and Closing Nav
+  const MenuToggle = useRef(null);
   const OpenNav = () => {
-    const MenuToggle = document.querySelector("#Menu-Toggle");
-
-    if (MenuToggle.style.transform === "translate(-100%)") {
-      MenuToggle.style.transform = "translate(0)";
+    if (MenuToggle.current.style.transform === "translate(-100%)") {
+      MenuToggle.current.style.transform = "translate(0)";
     } else {
-      MenuToggle.style.transform = "translate(-100%)";
+      MenuToggle.current.style.transform = "translate(-100%)";
     }
   };
 
@@ -32,7 +31,7 @@ const Header = () => {
   const navigate = useNavigate();
   const select = "Relevance";
 
-  const SearchFunc = () => {
+  const SearchFunc = async () => {
     if (q.length < 3) {
       return toast("Search Query Should Be Greater Than 3 haracters", {
         position: "bottom-center",
@@ -49,276 +48,314 @@ const Header = () => {
     const limit = 8;
     const page = 1;
     dispatch(searchApi({ q, limit, page, select }));
+    navigate(`/products/${q}`);
   };
 
-  useEffect(() => {
-    if (error !== null) {
-      return;
-    }
-    if (product !== null) {
-      navigate(`/products/${sq}`);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [error, product]);
+  const HomeNav = useRef(null);
+  const HomeNavMobile = useRef(null);
+  const ProductsNav = useRef(null);
+  const ProductsNavMobile = useRef(null);
+  const WirelessEarbudsNav = useRef(null);
+  const WirelessEarbudsNavMobile = useRef(null);
+  const ChargersNav = useRef(null);
+  const ChargersNavMobile = useRef(null);
+  const HeadphoneNav = useRef(null);
+  const HeadphoneNavMobile = useRef(null);
 
   useEffect(() => {
-    const t = document.querySelector("title");
-    // Home
-    if (t.textContent === "ECom | Home") {
-      document.querySelector("#home").classList.add("active");
+    if (location.pathname === "/") {
+      HomeNav.current.style.color = "#d10024";
+      HomeNavMobile.current.style.color = "#d10024";
     } else {
-      document.querySelector("#home").classList.remove("active");
+      HomeNav.current.style.color = "black";
+      HomeNavMobile.current.style.color = "white";
     }
-    // Products
-    if (t.textContent === "ECom | Products") {
-      document.querySelector("#products").classList.add("active");
+
+    if (location.pathname === "/products") {
+      ProductsNav.current.style.color = "#d10024";
+      ProductsNavMobile.current.style.color = "#d10024";
     } else {
-      document.querySelector("#products").classList.remove("active");
+      ProductsNav.current.style.color = "black";
+      ProductsNavMobile.current.style.color = "white";
     }
-  });
+
+    if (location.pathname === "/products/category/WirelessEarbuds") {
+      WirelessEarbudsNav.current.style.color = "#d10024";
+      WirelessEarbudsNavMobile.current.style.color = "#d10024";
+    } else {
+      WirelessEarbudsNav.current.style.color = "black";
+      WirelessEarbudsNavMobile.current.style.color = "white";
+    }
+
+    if (location.pathname === "/products/category/Chargers") {
+      ChargersNav.current.style.color = "#d10024";
+      ChargersNavMobile.current.style.color = "#d10024";
+    } else {
+      ChargersNav.current.style.color = "black";
+      ChargersNavMobile.current.style.color = "white";
+    }
+
+    if (location.pathname === "/products/category/Headphones") {
+      HeadphoneNav.current.style.color = "#d10024";
+      HeadphoneNavMobile.current.style.color = "#d10024";
+    } else {
+      HeadphoneNav.current.style.color = "black";
+      HeadphoneNavMobile.current.style.color = "white";
+    }
+  }, [location.pathname]);
 
   return (
-    <div>
-      <Container>
-        <ToastContainer
-          position="bottom-center"
-          autoClose={5000}
-          hideProgressBar
-          newestOnTop={false}
-          closeOnClick={false}
-          rtl={false}
-          pauseOnFocusLoss={false}
-          draggable={false}
-          pauseOnHover={false}
-          theme="dark"
-        />
+    <>
+      <div>
+        <Container>
+          <ToastContainer
+            position="bottom-center"
+            autoClose={5000}
+            hideProgressBar
+            newestOnTop={false}
+            closeOnClick={false}
+            rtl={false}
+            pauseOnFocusLoss={false}
+            draggable={false}
+            pauseOnHover={false}
+            theme="dark"
+          />
 
-        <Div>
-          <Info>
-            <Link
-              to="/"
-              onClick={() => {
-                dispatch(resetState());
-              }}
-            >
-              <p className="logo">ECom</p>
-            </Link>
-          </Info>
-          <Search>
-            <input
-              type="text"
-              placeholder="Search here"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            <button onClick={SearchFunc}>Search</button>
-          </Search>
-          <Info>
-            <Cart>
-              {totalQuantity < 1 ? (
-                <>
-                  <Link
-                    to="/cart"
-                    onClick={() => {
-                      dispatch(resetState());
-                    }}
-                  >
-                    <ShoppingCartIcon />
-                    <p>Your Cart</p>
-                  </Link>
-                </>
-              ) : (
-                <>
-                  <Link
-                    to="/cart"
-                    onClick={() => {
-                      dispatch(resetState());
-                    }}
-                  >
-                    <Badge
-                      badgeContent={totalQuantity}
-                      sx={{
-                        span: {
-                          backgroundColor: "#d10024",
-                        },
+          <Div>
+            <Info>
+              <Link
+                to="/"
+                onClick={() => {
+                  dispatch(resetState());
+                }}
+              >
+                <p className="logo">Volts.</p>
+              </Link>
+            </Info>
+            <Search>
+              <input
+                type="text"
+                placeholder="Search here"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <button onClick={SearchFunc}>Search</button>
+            </Search>
+            <Info>
+              <Cart>
+                {totalQuantity < 1 ? (
+                  <>
+                    <Link
+                      to="/cart"
+                      onClick={() => {
+                        dispatch(resetState());
                       }}
                     >
                       <ShoppingCartIcon />
-                    </Badge>
-                    <p>Your Cart</p>
-                  </Link>
-                </>
-              )}
-              <MenuOpen>
-                <MenuIcon id="menu-open" onClick={OpenNav} />
-                <p>Menu</p>
-              </MenuOpen>
-            </Cart>
-          </Info>
-        </Div>
-      </Container>
-      <Line />
+                      <p>Your Cart</p>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      to="/cart"
+                      onClick={() => {
+                        dispatch(resetState());
+                      }}
+                    >
+                      <Badge
+                        badgeContent={totalQuantity}
+                        sx={{
+                          span: {
+                            backgroundColor: "#d10024",
+                          },
+                        }}
+                      >
+                        <ShoppingCartIcon />
+                      </Badge>
+                      <p>Your Cart</p>
+                    </Link>
+                  </>
+                )}
+                <MenuOpen>
+                  <MenuIcon id="menu-open" onClick={OpenNav} />
+                  <p>Menu</p>
+                </MenuOpen>
+              </Cart>
+            </Info>
+          </Div>
+        </Container>
+        <Line />
 
-      {/* Nav */}
-      <Containerr>
-        <Divv>
-          <NavItems>
-            <Link
-              to="/"
-              onClick={() => {
-                dispatch(resetState());
-              }}
-            >
-              <span id="home">Home</span>
-            </Link>
+        {/* Nav */}
+        <Containerr>
+          <Divv>
+            <NavItems>
+              <Link
+                to="/"
+                onClick={() => {
+                  dispatch(resetState());
+                }}
+                ref={HomeNav}
+              >
+                Home
+              </Link>
 
-            <Link
-              to="/products"
-              onClick={() => {
-                dispatch(resetState());
-              }}
-            >
-              <span id="products">Products</span>
-            </Link>
+              <Link
+                to="/products"
+                onClick={() => {
+                  dispatch(resetState());
+                }}
+                ref={ProductsNav}
+              >
+                Products
+              </Link>
 
-            <Link
-              to={`/products/category/${"WirelessEarbuds"}`}
-              id="earbuds"
-              onClick={() => {
-                dispatch(
-                  SearchCatagory({
-                    catagory: "WirelessEarbuds",
-                    page: 1,
-                    limit: 8,
-                    select,
-                  })
-                );
-                dispatch(resetState());
-              }}
-            >
-              Wireless Earbuds
-            </Link>
+              <Link
+                to={`/products/category/${"WirelessEarbuds"}`}
+                onClick={() => {
+                  dispatch(
+                    SearchCatagory({
+                      catagory: "WirelessEarbuds",
+                      page: 1,
+                      limit: 8,
+                      select,
+                    })
+                  );
+                  dispatch(resetState());
+                }}
+                ref={WirelessEarbudsNav}
+              >
+                Wireless Earbuds
+              </Link>
 
-            <Link
-              to={`/products/category/${"Chargers"}`}
-              id="charger"
-              onClick={() => {
-                dispatch(
-                  SearchCatagory({
-                    catagory: "charger",
-                    page: 1,
-                    limit: 8,
-                    select,
-                  })
-                );
-                dispatch(resetState());
-              }}
-            >
-              Chargers
-            </Link>
+              <Link
+                to={`/products/category/${"Chargers"}`}
+                onClick={() => {
+                  dispatch(
+                    SearchCatagory({
+                      catagory: "charger",
+                      page: 1,
+                      limit: 8,
+                      select,
+                    })
+                  );
+                  dispatch(resetState());
+                }}
+                ref={ChargersNav}
+              >
+                Chargers
+              </Link>
 
-            <Link
-              to={`/products/category/${"Headphones"}`}
-              onClick={() => {
-                dispatch(
-                  SearchCatagory({
-                    catagory: "headphone",
-                    page: 1,
-                    limit: 8,
-                    select,
-                  })
-                );
-                dispatch(resetState());
-              }}
-            >
-              Headphones
-            </Link>
-          </NavItems>
-        </Divv>
-      </Containerr>
+              <Link
+                to={`/products/category/${"Headphones"}`}
+                onClick={() => {
+                  dispatch(
+                    SearchCatagory({
+                      catagory: "headphone",
+                      page: 1,
+                      limit: 8,
+                      select,
+                    })
+                  );
+                  dispatch(resetState());
+                }}
+                ref={HeadphoneNav}
+              >
+                Headphones
+              </Link>
+            </NavItems>
+          </Divv>
+        </Containerr>
 
-      {/* Mobile Nav */}
-      <MobileContainer
-        id="Menu-Toggle"
-        style={{ transform: "translate(-100%)" }}
-      >
-        <MobileNav>
-          <MobileNavItems>
-            <Link
-              to="/"
-              onClick={() => {
-                dispatch(resetState());
-              }}
-            >
-              Home
-            </Link>
+        {/* Mobile Nav */}
+        <MobileContainer
+          id="Menu-Toggle"
+          ref={MenuToggle}
+          style={{ transform: "translate(-100%)" }}
+        >
+          <MobileNav>
+            <MobileNavItems>
+              <Link
+                to="/"
+                onClick={() => {
+                  dispatch(resetState());
+                }}
+                ref={HomeNavMobile}
+              >
+                Home
+              </Link>
 
-            <Link
-              to="/products"
-              onClick={() => {
-                dispatch(resetState());
-              }}
-            >
-              Products
-            </Link>
+              <Link
+                to="/products"
+                onClick={() => {
+                  dispatch(resetState());
+                }}
+                ref={ProductsNavMobile}
+              >
+                Products
+              </Link>
 
-            <Link
-              to={`/products/category/${"WirelessEarbuds"}`}
-              id="earbuds"
-              onClick={() => {
-                dispatch(
-                  SearchCatagory({
-                    catagory: "WirelessEarbuds",
-                    page: 1,
-                    limit: 8,
-                    select,
-                  })
-                );
-                dispatch(resetState());
-              }}
-            >
-              Wireless Earbuds
-            </Link>
+              <Link
+                to={`/products/category/${"WirelessEarbuds"}`}
+                id="earbuds"
+                onClick={() => {
+                  dispatch(
+                    SearchCatagory({
+                      catagory: "WirelessEarbuds",
+                      page: 1,
+                      limit: 8,
+                      select,
+                    })
+                  );
+                  dispatch(resetState());
+                }}
+                ref={WirelessEarbudsNavMobile}
+              >
+                Wireless Earbuds
+              </Link>
 
-            <Link
-              to={`/products/category/${"Chargers"}`}
-              id="charger"
-              onClick={() => {
-                dispatch(
-                  SearchCatagory({
-                    catagory: "charger",
-                    page: 1,
-                    limit: 8,
-                    select,
-                  })
-                );
-                dispatch(resetState());
-              }}
-            >
-              Chargers
-            </Link>
+              <Link
+                to={`/products/category/${"Chargers"}`}
+                onClick={() => {
+                  dispatch(
+                    SearchCatagory({
+                      catagory: "charger",
+                      page: 1,
+                      limit: 8,
+                      select,
+                    })
+                  );
+                  dispatch(resetState());
+                }}
+                ref={ChargersNavMobile}
+              >
+                Chargers
+              </Link>
 
-            <Link
-              to={`/products/category/${"Headphones"}`}
-              onClick={() => {
-                dispatch(
-                  SearchCatagory({
-                    catagory: "headphone",
-                    page: 1,
-                    limit: 8,
-                    select,
-                  })
-                );
-                dispatch(resetState());
-              }}
-            >
-              Headphones
-            </Link>
-          </MobileNavItems>
-        </MobileNav>
-      </MobileContainer>
-      {/*  */}
-    </div>
+              <Link
+                to={`/products/category/${"Headphones"}`}
+                onClick={() => {
+                  dispatch(
+                    SearchCatagory({
+                      catagory: "headphone",
+                      page: 1,
+                      limit: 8,
+                      select,
+                    })
+                  );
+                  dispatch(resetState());
+                }}
+                ref={HeadphoneNavMobile}
+              >
+                Headphones
+              </Link>
+            </MobileNavItems>
+          </MobileNav>
+        </MobileContainer>
+        {/*  */}
+      </div>
+    </>
   );
 };
 
@@ -524,10 +561,6 @@ const MobileContainer = styled.div`
   a {
     text-decoration: none;
     color: white;
-  }
-
-  .active {
-    color: #d10024;
   }
 `;
 

@@ -7,7 +7,6 @@ import SortIcon from "@mui/icons-material/Sort";
 import TuneIcon from "@mui/icons-material/Tune";
 import PreFooter from "../components/PreFooter";
 import Footer from "../components/Footer";
-import SearchedProduct from "./pages/SearchedProduct";
 import { useSelector, useDispatch } from "react-redux";
 import Pagination from "@mui/material/Pagination";
 import { GetAllProducts } from "../redux/Slices/GetAllProductSlice";
@@ -15,8 +14,6 @@ import { ToastContainer } from "react-toastify";
 
 const AllProducts = () => {
   const dispatch = useDispatch();
-
-  const { product } = useSelector((state) => state.features);
   const { productLength } = useSelector((state) => state.allProducts);
 
   const options = [
@@ -55,62 +52,56 @@ const AllProducts = () => {
 
   return (
     <>
-      {product !== null ? (
-        <SearchedProduct />
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable={false}
+        pauseOnHover={false}
+        theme="dark"
+      />
+      <PreNav />
+      <Header />
+      <FilterDiv>
+        <Sort>
+          <SortIcon />
+          <select value={select} onChange={changeSelect}>
+            {options.map((option) => (
+              <option key={option.text}>{option.text}</option>
+            ))}
+          </select>
+        </Sort>
+        <Filter style={{ display: "none" }}>
+          <TuneIcon />
+          <p>filter</p>
+        </Filter>
+      </FilterDiv>
+      <Container>
+        <ProductCards />
+      </Container>
+
+      {productLength <= 8 ? (
+        <></>
       ) : (
-        <>
-          <ToastContainer
-            position="bottom-center"
-            autoClose={5000}
-            hideProgressBar
-            newestOnTop={false}
-            closeOnClick={false}
-            rtl={false}
-            pauseOnFocusLoss={false}
-            draggable={false}
-            pauseOnHover={false}
-            theme="dark"
+        <PageContainer className="pagination">
+          <Pagination
+            count={totalPage}
+            variant="outlined"
+            shape="rounded"
+            page={page}
+            onChange={(e, v) => {
+              setPage(v);
+            }}
           />
-          <PreNav />
-          <Header />
-          <FilterDiv>
-            <Sort>
-              <SortIcon />
-              <select value={select} onChange={changeSelect}>
-                {options.map((option) => (
-                  <option key={option.text}>{option.text}</option>
-                ))}
-              </select>
-            </Sort>
-            <Filter style={{ display: "none" }}>
-              <TuneIcon />
-              <p>filter</p>
-            </Filter>
-          </FilterDiv>
-          <Container>
-            <ProductCards />
-          </Container>
-
-          {productLength <= 8 ? (
-            <></>
-          ) : (
-            <PageContainer className="pagination">
-              <Pagination
-                count={totalPage}
-                variant="outlined"
-                shape="rounded"
-                page={page}
-                onChange={(e, v) => {
-                  setPage(v);
-                }}
-              />
-            </PageContainer>
-          )}
-
-          <PreFooter />
-          <Footer />
-        </>
+        </PageContainer>
       )}
+
+      <PreFooter />
+      <Footer />
     </>
   );
 };
