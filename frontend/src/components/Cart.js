@@ -26,6 +26,7 @@ const Cart = () => {
 
   useEffect(() => {
     document.querySelector("title").textContent = "ECom | Cart";
+    document.querySelector("body").style.backgroundColor = "#FFF";
     dispatch(getTotal());
   });
 

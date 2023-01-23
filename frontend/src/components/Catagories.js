@@ -10,6 +10,7 @@ const Catagories = () => {
   const c = "ear";
   useEffect(() => {
     document.querySelector("title").textContent = `ECom | ${c}`;
+    document.querySelector("body").style.backgroundColor = "#FFF";
   });
 
   return (

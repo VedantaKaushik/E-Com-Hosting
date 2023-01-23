@@ -14,6 +14,7 @@ const Home = () => {
   // Changing The Title
   useEffect(() => {
     document.querySelector("title").textContent = "ECom | Home";
+    document.querySelector("body").style.backgroundColor = "#FFF";
   });
 
   return (

@@ -38,6 +38,7 @@ const AllProducts = () => {
 
   useEffect(() => {
     document.querySelector("title").textContent = "ECom | Products";
+    document.querySelector("body").style.backgroundColor = "#FFF";
   });
 
   useEffect(() => {

@@ -17,6 +17,11 @@ const CheckoutPage = () => {
   const [loading, setLoading] = useState(false);
   const { priceTotal, product } = useSelector((State) => State.cart);
 
+  useEffect(() => {
+    document.querySelector("body").style.backgroundColor = "#FFF";
+    document.querySelector("title").textContent = `ECom | Checkout`;
+  });
+
   //
   useEffect(() => {
     if (product.length === 0) {

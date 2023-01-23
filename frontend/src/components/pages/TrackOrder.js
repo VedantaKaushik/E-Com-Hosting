@@ -12,6 +12,7 @@ const TrackOrder = () => {
   // Title Change
   useEffect(() => {
     document.querySelector("title").textContent = "ECom | Track";
+    document.querySelector("body").style.backgroundColor = "#FFF";
   });
 
   const [id, setId] = useState("");

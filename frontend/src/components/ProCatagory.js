@@ -17,6 +17,7 @@ import { SearchCatagory } from "../redux/Slices/CatagorySlice";
 const ProCatagory = () => {
   useEffect(() => {
     document.querySelector("title").textContent = `ECom | Products`;
+    document.querySelector("body").style.backgroundColor = "#FFF";
   });
 
   const { error, products, proLength } = useSelector((s) => s.catagory);

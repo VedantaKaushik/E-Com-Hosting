@@ -17,6 +17,7 @@ import { searchApi } from "../../redux/Slices/FeatureSlice";
 const SearchedProduct = () => {
   useEffect(() => {
     document.querySelector("title").textContent = `ECom | Products`;
+    document.querySelector("body").style.backgroundColor = "#FFF";
   });
 
   const { product, sq, productLength, error } = useSelector(

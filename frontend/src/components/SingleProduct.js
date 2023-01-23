@@ -23,6 +23,7 @@ const SingleProduct = () => {
   // Changing the title
   useEffect(() => {
     document.querySelector("title").textContent = "ECom | Product";
+    document.querySelector("body").style.backgroundColor = "#FFF";
   });
 
   const dispatch = useDispatch();

@@ -16,6 +16,7 @@ import { UpdateAddress } from "../redux/Slices/UpdateSlice";
 const Account = () => {
   useEffect(() => {
     document.querySelector("title").textContent = "ECom | Account";
+    document.querySelector("body").style.backgroundColor = "#FFF";
 
     if (document.querySelector("title").textContent === "ECom | Account") {
       document.getElementById("My-Account").style.color = "#d10024";
