@@ -10,9 +10,11 @@ import { ToastContainer, toast } from "react-toastify";
 import { SearchCatagory } from "../redux/Slices/CatagorySlice";
 
 const Header = () => {
+  const { sq } = useSelector((state) => state.features);
+
   const dispatch = useDispatch();
   const location = useLocation();
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(sq);
 
   const { totalQuantity } = useSelector((state) => state.cart);
 
