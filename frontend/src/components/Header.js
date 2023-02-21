@@ -9,6 +9,8 @@ import { getQuery, searchApi, resetState } from "../redux/Slices/FeatureSlice";
 import { ToastContainer, toast } from "react-toastify";
 import { SearchCatagory } from "../redux/Slices/CatagorySlice";
 
+// work left
+
 const Header = () => {
   const { sq } = useSelector((state) => state.features);
 
