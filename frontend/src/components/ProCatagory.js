@@ -125,7 +125,6 @@ const ProCatagory = () => {
                     <span
                       onClick={() => {
                         navigate(`/product/${products._id}`);
-                        dispatch(resetState());
                       }}
                     >
                       <CardImage>

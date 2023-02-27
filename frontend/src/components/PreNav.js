@@ -6,13 +6,10 @@ import EmailIcon from "@mui/icons-material/Email";
 // import EuroIcon from "@mui/icons-material/Euro";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import { resetState } from "../redux/Slices/FeatureSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const PreNav = () => {
   const { user_id } = useSelector((state) => state.auth);
-
-  const dispatch = useDispatch();
 
   return (
     <>
@@ -38,13 +35,7 @@ const PreNav = () => {
               <CurrencyRupeeIcon />
               <p>INR</p>
             </CurrencyDiv>
-            <Link
-              to={`/account/${user_id}`}
-              id="My-Account"
-              onClick={() => {
-                dispatch(resetState());
-              }}
-            >
+            <Link to={`/account/${user_id}`} id="My-Account" onClick={() => {}}>
               <AccountDiv>
                 <PersonOutlineIcon />
                 <p>My Account</p>

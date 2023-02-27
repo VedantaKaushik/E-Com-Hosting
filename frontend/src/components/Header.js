@@ -5,7 +5,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Badge from "@mui/material/Badge";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useSelector, useDispatch } from "react-redux";
-import { getQuery, searchApi, resetState } from "../redux/Slices/FeatureSlice";
+import { getQuery, searchApi } from "../redux/Slices/FeatureSlice";
 import { ToastContainer, toast } from "react-toastify";
 import { SearchCatagory } from "../redux/Slices/CatagorySlice";
 
@@ -127,12 +127,7 @@ const Header = () => {
 
           <Div>
             <Info>
-              <Link
-                to="/"
-                onClick={() => {
-                  dispatch(resetState());
-                }}
-              >
+              <Link to="/" onClick={() => {}}>
                 <p className="logo">ECom</p>
               </Link>
             </Info>
@@ -149,24 +144,14 @@ const Header = () => {
               <Cart>
                 {totalQuantity < 1 ? (
                   <>
-                    <Link
-                      to="/cart"
-                      onClick={() => {
-                        dispatch(resetState());
-                      }}
-                    >
+                    <Link to="/cart" onClick={() => {}}>
                       <ShoppingCartIcon />
                       <p>Your Cart</p>
                     </Link>
                   </>
                 ) : (
                   <>
-                    <Link
-                      to="/cart"
-                      onClick={() => {
-                        dispatch(resetState());
-                      }}
-                    >
+                    <Link to="/cart" onClick={() => {}}>
                       <Badge
                         badgeContent={totalQuantity}
                         sx={{
@@ -195,23 +180,11 @@ const Header = () => {
         <Containerr>
           <Divv>
             <NavItems>
-              <Link
-                to="/"
-                onClick={() => {
-                  dispatch(resetState());
-                }}
-                ref={HomeNav}
-              >
+              <Link to="/" onClick={() => {}} ref={HomeNav}>
                 Home
               </Link>
 
-              <Link
-                to="/products"
-                onClick={() => {
-                  dispatch(resetState());
-                }}
-                ref={ProductsNav}
-              >
+              <Link to="/products" onClick={() => {}} ref={ProductsNav}>
                 Products
               </Link>
 
@@ -226,7 +199,6 @@ const Header = () => {
                       select,
                     })
                   );
-                  dispatch(resetState());
                 }}
                 ref={WirelessEarbudsNav}
               >
@@ -244,7 +216,6 @@ const Header = () => {
                       select,
                     })
                   );
-                  dispatch(resetState());
                 }}
                 ref={ChargersNav}
               >
@@ -262,7 +233,6 @@ const Header = () => {
                       select,
                     })
                   );
-                  dispatch(resetState());
                 }}
                 ref={HeadphoneNav}
               >
@@ -280,23 +250,11 @@ const Header = () => {
         >
           <MobileNav>
             <MobileNavItems>
-              <Link
-                to="/"
-                onClick={() => {
-                  dispatch(resetState());
-                }}
-                ref={HomeNavMobile}
-              >
+              <Link to="/" onClick={() => {}} ref={HomeNavMobile}>
                 Home
               </Link>
 
-              <Link
-                to="/products"
-                onClick={() => {
-                  dispatch(resetState());
-                }}
-                ref={ProductsNavMobile}
-              >
+              <Link to="/products" onClick={() => {}} ref={ProductsNavMobile}>
                 Products
               </Link>
 
@@ -312,7 +270,6 @@ const Header = () => {
                       select,
                     })
                   );
-                  dispatch(resetState());
                 }}
                 ref={WirelessEarbudsNavMobile}
               >
@@ -330,7 +287,6 @@ const Header = () => {
                       select,
                     })
                   );
-                  dispatch(resetState());
                 }}
                 ref={ChargersNavMobile}
               >
@@ -348,7 +304,6 @@ const Header = () => {
                       select,
                     })
                   );
-                  dispatch(resetState());
                 }}
                 ref={HeadphoneNavMobile}
               >

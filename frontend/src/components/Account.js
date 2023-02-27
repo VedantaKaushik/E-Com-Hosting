@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import PreNav from "./PreNav";
@@ -11,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/Slices/AuthSlice";
 import { Country } from "country-state-city";
 import { ToastContainer } from "react-toastify";
-import { UpdateAddress } from "../redux/Slices/UpdateSlice";
 
 const Account = () => {
   useEffect(() => {

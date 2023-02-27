@@ -11,7 +11,6 @@ import Footer from "../Footer";
 import PreFooter from "../PreFooter";
 import Rating from "@mui/material/Rating";
 import Pagination from "@mui/material/Pagination";
-import { resetState } from "../../redux/Slices/FeatureSlice";
 import { searchApi } from "../../redux/Slices/FeatureSlice";
 
 const SearchedProduct = () => {
@@ -115,7 +114,6 @@ const SearchedProduct = () => {
                     <span
                       onClick={() => {
                         navigate(`/product/${products._id}`);
-                        dispatch(resetState());
                       }}
                     >
                       <CardImage>

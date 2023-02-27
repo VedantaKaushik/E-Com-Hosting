@@ -33,15 +33,6 @@ const featureSlice = createSlice({
     getQuery: (state, action) => {
       state.sq = action.payload;
     },
-
-    resetState: (state) => {
-      // state.isLoading = false;
-      // state.error = null;
-      // state.sucess = false;
-      // state.product = null;
-      // state.sq = "";
-      // return;
-    },
   },
 
   extraReducers: {
@@ -72,4 +63,4 @@ const featureSlice = createSlice({
 });
 
 export default featureSlice.reducer;
-export const { getQuery, resetState } = featureSlice.actions;
+export const { getQuery } = featureSlice.actions;

@@ -1,12 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { resetState } from "../redux/Slices/FeatureSlice";
+import { useSelector } from "react-redux";
 
 const PreFooter = () => {
   const { user_id } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
 
   return (
     <div>
@@ -25,40 +23,16 @@ const PreFooter = () => {
           <Info>
             <p className="Heading">Information</p>
 
-            <Link
-              to="#"
-              className="links"
-              onClick={() => {
-                dispatch(resetState());
-              }}
-            >
+            <Link to="#" className="links" onClick={() => {}}>
               About Us
             </Link>
-            <Link
-              to="#"
-              className="links"
-              onClick={() => {
-                dispatch(resetState());
-              }}
-            >
+            <Link to="#" className="links" onClick={() => {}}>
               Shipping Policy
             </Link>
-            <Link
-              to="#"
-              className="links"
-              onClick={() => {
-                dispatch(resetState());
-              }}
-            >
+            <Link to="#" className="links" onClick={() => {}}>
               Privacy Policy
             </Link>
-            <Link
-              to="#"
-              className="links"
-              onClick={() => {
-                dispatch(resetState());
-              }}
-            >
+            <Link to="#" className="links" onClick={() => {}}>
               Orders and Returns
             </Link>
           </Info>
@@ -69,28 +43,14 @@ const PreFooter = () => {
             <Link
               to={`/account/${user_id}`}
               className="links"
-              onClick={() => {
-                dispatch(resetState());
-              }}
+              onClick={() => {}}
             >
               My Account
             </Link>
-            <Link
-              to="/order/track"
-              className="links"
-              onClick={() => {
-                dispatch(resetState());
-              }}
-            >
+            <Link to="/order/track" className="links" onClick={() => {}}>
               Track My Order
             </Link>
-            <Link
-              to="#"
-              className="links"
-              onClick={() => {
-                dispatch(resetState());
-              }}
-            >
+            <Link to="#" className="links" onClick={() => {}}>
               Help
             </Link>
           </Info>
