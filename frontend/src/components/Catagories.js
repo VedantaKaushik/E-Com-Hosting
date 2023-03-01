@@ -4,6 +4,8 @@ import styled from "styled-components";
 import Earbuds from "../assets/earbuds.jpg";
 import Charger from "../assets/Charger.png";
 import HeadPhone from "../assets/headphones.png";
+import { useDispatch } from "react-redux";
+import { SearchCatagory } from "../redux/Slices/CatagorySlice";
 
 const Catagories = () => {
   // Changing the Title
@@ -12,6 +14,9 @@ const Catagories = () => {
     document.querySelector("title").textContent = `ECom | ${c}`;
     document.querySelector("body").style.backgroundColor = "#FFF";
   });
+
+  const dispatch = useDispatch();
+  const select = "Relevance";
 
   return (
     <>
@@ -22,7 +27,21 @@ const Catagories = () => {
               <p>
                 Earbud
                 <br /> Collection <br />
-                <Link to={`/products/catagorie`}>Shop Now</Link>
+                <Link
+                  to={`/products/category/${"WirelessEarbuds"}`}
+                  onClick={() => {
+                    dispatch(
+                      SearchCatagory({
+                        catagory: "WirelessEarbuds",
+                        page: 1,
+                        limit: 8,
+                        select,
+                      })
+                    );
+                  }}
+                >
+                  Shop Now
+                </Link>
               </p>
             </Heading>
             <img src={Earbuds} alt="." />
@@ -33,7 +52,21 @@ const Catagories = () => {
               <p>
                 Charger
                 <br /> Collection <br />
-                <Link to="#">Shop Now</Link>
+                <Link
+                  to={`/products/category/${"Chargers"}`}
+                  onClick={() => {
+                    dispatch(
+                      SearchCatagory({
+                        catagory: "charger",
+                        page: 1,
+                        limit: 8,
+                        select,
+                      })
+                    );
+                  }}
+                >
+                  Shop Now
+                </Link>
               </p>
             </Heading>
             <img src={Charger} alt="." />
@@ -44,7 +77,21 @@ const Catagories = () => {
               <p>
                 Headphone
                 <br /> Collection <br />
-                <Link to="#">Shop Now</Link>
+                <Link
+                  to={`/products/category/${"Headphones"}`}
+                  onClick={() => {
+                    dispatch(
+                      SearchCatagory({
+                        catagory: "headphone",
+                        page: 1,
+                        limit: 8,
+                        select,
+                      })
+                    );
+                  }}
+                >
+                  Shop Now
+                </Link>
               </p>
             </Heading>
             <img src={HeadPhone} alt="." />
