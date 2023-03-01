@@ -11,7 +11,6 @@ import Footer from "./Footer";
 import PreFooter from "./PreFooter";
 import Rating from "@mui/material/Rating";
 import Pagination from "@mui/material/Pagination";
-import { resetState } from "../redux/Slices/FeatureSlice";
 import { SearchCatagory } from "../redux/Slices/CatagorySlice";
 
 const ProCatagory = () => {
