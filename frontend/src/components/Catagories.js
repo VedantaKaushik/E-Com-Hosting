@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Earbuds from "../assets/earbuds.jpg";
 import Charger from "../assets/Charger.png";
@@ -8,11 +8,8 @@ import { useDispatch } from "react-redux";
 import { SearchCatagory } from "../redux/Slices/CatagorySlice";
 
 const Catagories = () => {
-  const { id } = useParams();
-
   // Changing the Title
   useEffect(() => {
-    document.querySelector("title").textContent = `ECom | ${id}`;
     document.querySelector("body").style.backgroundColor = "#FFF";
   });
 

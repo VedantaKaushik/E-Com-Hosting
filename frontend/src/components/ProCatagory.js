@@ -14,8 +14,10 @@ import Pagination from "@mui/material/Pagination";
 import { SearchCatagory } from "../redux/Slices/CatagorySlice";
 
 const ProCatagory = () => {
+  const { id } = useParams();
+
   useEffect(() => {
-    document.querySelector("title").textContent = `ECom | Products`;
+    document.querySelector("title").textContent = `ECom | ${id}`;
     document.querySelector("body").style.backgroundColor = "#FFF";
   });
 
@@ -23,7 +25,6 @@ const ProCatagory = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id } = useParams();
 
   const options = [
     {
