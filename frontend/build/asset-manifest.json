@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.0b8b7729.css",
-    "main.js": "/static/js/main.3da5f97b.js",
+    "main.css": "/static/css/main.cde28552.css",
+    "main.js": "/static/js/main.d299c070.js",
     "static/media/headphones.png": "/static/media/headphones.9137294904c21dab49cf.png",
     "static/media/404.jpg": "/static/media/404.ce293654fc5b055593cf.jpg",
     "static/media/earbuds.jpg": "/static/media/earbuds.8e35328b467c3fd6987d.jpg",
@@ -14,11 +14,11 @@
     "static/media/Amex.svg": "/static/media/Amex.1e6b37aaa809ef1318114ead15ad0222.svg",
     "static/media/Diners Club.svg": "/static/media/Diners Club.f934b564e3cfb5d400404923ab91a8e9.svg",
     "index.html": "/index.html",
-    "main.0b8b7729.css.map": "/static/css/main.0b8b7729.css.map",
-    "main.3da5f97b.js.map": "/static/js/main.3da5f97b.js.map"
+    "main.cde28552.css.map": "/static/css/main.cde28552.css.map",
+    "main.d299c070.js.map": "/static/js/main.d299c070.js.map"
   },
   "entrypoints": [
-    "static/css/main.0b8b7729.css",
-    "static/js/main.3da5f97b.js"
+    "static/css/main.cde28552.css",
+    "static/js/main.d299c070.js"
   ]
 }
