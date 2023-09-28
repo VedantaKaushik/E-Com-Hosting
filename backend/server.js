@@ -4,8 +4,13 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import cloudinary from "cloudinary";
 import fileupload from "express-fileupload";
+import path from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
 const app = express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Middlewares
 dotenv.config({ path: "./config.env" });
@@ -19,6 +24,8 @@ app.use(
   })
 );
 app.use(fileupload());
+
+app.use(express.static(path.join(__dirname, "../frontend/build")));
 
 // Routes
 import AuthRoutes from "./routes/AuthRoutes.js";
