@@ -15,9 +15,7 @@ const FeaturedProducts = () => {
   const [product, setProduct] = useState([]);
 
   const Fetch = async () => {
-    const res = await axios.get(
-      `https://voltssr.onrender.com/api/products?limit=6&sort=Relevance`
-    );
+    const res = await axios.get(`/api/products?limit=6&sort=Relevance`);
     setProduct(res.data.products);
     return;
   };

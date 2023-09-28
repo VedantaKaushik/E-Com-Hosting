@@ -38,12 +38,9 @@ const TrackOrder = () => {
       });
     }
 
-    const res = await axios.post(
-      "https://voltssr.onrender.com/api/order/track",
-      {
-        orderId,
-      }
-    );
+    const res = await axios.post("/api/order/track", {
+      orderId,
+    });
 
     if (res.data.sucess === true || res.data.sucess === false) {
       setLoading(false);

@@ -83,13 +83,9 @@ const Register = () => {
 
     reState();
 
-    const res = await axios.post(
-      "https://voltssr.onrender.com/api/user/create",
-      data,
-      {
-        "Content-Type": "application/json",
-      }
-    );
+    const res = await axios.post("/api/user/create", data, {
+      "Content-Type": "application/json",
+    });
 
     if (res.data.sucess === false) {
       setLoading(false);

@@ -23,21 +23,14 @@ export const UpdateAddress = createAsyncThunk(
     try {
       const data = { AdressLine, city, state, zipCode, phone, country, id };
 
-      const res = await axios.post(
-        "https://voltssr.onrender.com/api/user/update",
-        data,
-        {
-          "Content-Type": "application/json",
-        }
-      );
+      const res = await axios.post("/api/user/update", data, {
+        "Content-Type": "application/json",
+      });
 
       const UpdateDetail = async () => {
-        const Detail = await axios.get(
-          "https://voltssr.onrender.com/api/user/getinfo",
-          {
-            withCredentials: true,
-          }
-        );
+        const Detail = await axios.get("/api/user/getinfo", {
+          withCredentials: true,
+        });
 
         // Deleting User Detail
         sessionStorage.removeItem("user");

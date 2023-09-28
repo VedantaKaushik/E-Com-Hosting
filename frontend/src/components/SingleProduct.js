@@ -42,9 +42,7 @@ const SingleProduct = () => {
 
   // Getting The Product
   const getProduct = async () => {
-    const res = await axios.get(
-      `https://voltssr.onrender.com/api/product?id=${id}`
-    );
+    const res = await axios.get(`/api/product?id=${id}`);
     setProduct(res.data);
     setReview(res.data.review);
     setSideImage(res.data.images);
@@ -145,10 +143,7 @@ const SingleProduct = () => {
 
     const data = { userId, rating: rati, revDesc };
 
-    const res = await axios.post(
-      `https://voltssr.onrender.com/api/features/review?id=${id}`,
-      data
-    );
+    const res = await axios.post(`/api/features/review?id=${id}`, data);
 
     setReview(res.data.review);
 
@@ -179,9 +174,7 @@ const SingleProduct = () => {
 
   // get All review
   const getRev = async () => {
-    const res = await axios.get(
-      `https://voltssr.onrender.com/api/product/reviews?id=${id}`
-    );
+    const res = await axios.get(`/api/product/reviews?id=${id}`);
 
     setReview(res.data.review);
   };
